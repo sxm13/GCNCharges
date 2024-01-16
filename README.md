@@ -55,4 +55,4 @@ If you use CGCN Charge, please cite [this paper]():
 
 ## Development & Bugs
 
-***GCN Charge*** is under active development, if you encounter any bugs in installation and usage, please concat [me](sxmzhaogb@gmail.com).
+ If you encounter any problem during using ***GCN Charge***, please talk to me ```sxmzhaogb@gmail.com```.
