@@ -55,4 +55,7 @@ If you use CGCN Charge, please cite [this paper]():
 
 ## Development & Bugs
 
- If you encounter any problem during using ***GCN Charge***, please talk to me ```sxmzhaogb@gmail.com```.
+ If you encounter any problem during using ***GCN Charge***, please talk to me ```sxmzhaogb@gmail.com```.                            
+
+ 
+**Group:**   [Molecular Thermodynamics & Advance Processes Laboratory](https://sites.google.com/view/mtap-lab/home?authuser=0)                                
