@@ -6,7 +6,7 @@
 
 A MOF/COF charge predicter by **G**raph **C**onvolution **N**etwork.                           
 
-[![Requires Python 3.9+](https://img.shields.io/badge/Python-3.9+-blue.svg?logo=python&logoColor=white)](https://python.org/downloads)
+[![Requires Python 3.9](https://img.shields.io/badge/Python-3.9-blue.svg?logo=python&logoColor=white)](https://python.org/downloads)
 ![Logo](/figs/toc.jpg)              
 
 # Download
