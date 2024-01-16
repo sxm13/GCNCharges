@@ -23,10 +23,19 @@ pip install -r requirements.txt
 
 # Charge Assignment               
 
+**bash**
 ```sh
 python GCNCharge.py [folder name] [MOF/COF]
 ```
 example: ```python GCNCharge.py test_file MOF```
+
+**notebook**
+```sh
+import GCNCharge4notebook
+GCNCharge4notebook.GCNChagre(file="./test/test_cubtc/",model="MOF")
+```
+file: your folder contains cif files                               
+model: MOF or COF
 
 # Website
 IF you do not want to install GCN Charge, you can go to this :point_right: [link](https://gcn-charge-predicter-mtap.streamlit.app/)                    
