@@ -29,7 +29,7 @@ python GCNCharge.py [folder name] [MOF/COF]
 example: ```python GCNCharge.py test_file MOF```
 
 # Website
-IF you do not want to install GCN Charge, you can go to this [link](https://gcn-charge-predicter-mtap.streamlit.app/)                    
+IF you do not want to install GCN Charge, you can go to this :point_right: [link](https://gcn-charge-predicter-mtap.streamlit.app/)                    
 
 # Reference
 If you use CGCN Charge, please cite [this paper]():
