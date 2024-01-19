@@ -22,6 +22,7 @@ pip install -r requirements.txt
 ```
 
 # Charge Assignment               
+You can put your cif files in any folder, but please run the code and jupyter notebook in this folder.                
 
 **bash**
 ```sh
@@ -36,6 +37,7 @@ GCNCharge4notebook.GCNChagre(file="./test/test_cubtc/",model="MOF")
 ```
 file: your folder contains cif files                               
 model: MOF or COF
+there is an example in ```GCNCharge.ipynb```
 
 # Website
 IF you do not want to install GCN Charge, you can go to this :point_right: [link](https://gcn-charge-predicter-mtap.streamlit.app/)                    
