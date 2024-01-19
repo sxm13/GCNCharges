@@ -36,7 +36,7 @@ import GCNCharge4notebook
 GCNCharge4notebook.GCNChagre(file="./test/test_cubtc/",model="MOF")
 ```
 file: your folder contains cif files                               
-model: MOF or COF
+model: MOF or COF                                                   
 there is an example in ```GCNCharge.ipynb```
 
 # Website
