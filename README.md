@@ -8,7 +8,7 @@ A MOF/COF charge predicter by **G**raph **C**onvolution **N**etwork.
 
 [![Requires Python 3.9](https://img.shields.io/badge/Python-3.9-blue.svg?logo=python&logoColor=white)](https://python.org/downloads)
 <a href="https://gcn-charge-predicter-mtap.streamlit.app/"><img src="https://gcn-charge-predicter-mtap.streamlit.app.svg" alt="website"></a>
-<a href="https://zenodo.org/badge/latestdoi/8312801"><img src="https://zenodo.org/badge/8312801.svg" alt="zenodo Citation"></a>
+<a href="https://zenodo.org/8312801"><img src="https://zenodo.org/8312801.svg" alt="zenodo"></a>
 
 ![Logo](/figs/toc.jpg)              
 
