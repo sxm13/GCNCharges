@@ -63,10 +63,10 @@ def main():
     all_cif_files = glob.glob(os.path.join(path, '*.cif'))
     cif_files = [f for f in all_cif_files if not f.endswith('_gcn.cif')]
     # dic = {}
-    fail = {}
+    # fail = {}
     i = 0
     for path in tqdm(cif_files):
-        try:
+        # try:
             ase_format(path)
             CIF2json(path,save_path="")
             pre4pre(path,"","")
@@ -122,13 +122,13 @@ def main():
                         encoder_feature = gcn.Encoding(*input_var)
                         atoms_fea = torch.cat((input_cuda[0],input_cuda[7]),dim=-1)
                         input_var2 = (atoms_fea.cuda(),
-                                        input_cuda[1].cuda(),
-                                        input_cuda[2].cuda(),
-                                        input_cuda[3].cuda(),
-                                        input_cuda[4].cuda(),
-                                        input_cuda[5].cuda(),
-                                        encoder_feature.cuda(),
-                                        input_cuda[9][:,:9].cuda())
+                                input_cuda[1].cuda(),
+                                input_cuda[2].cuda(),
+                                input_cuda[3].cuda(),
+                                input_cuda[4].cuda(),
+                                input_cuda[5].cuda(),
+                                encoder_feature.cuda(),
+                                input_cuda[9][:,:9].cuda())
                     else:
                         input_var = (input[0],
                                     input[1],
@@ -139,13 +139,13 @@ def main():
                         encoder_feature = gcn.Encoding(*input_var)
                         atoms_fea = torch.cat((input[0],input[7]),dim=-1)
                         input_var2 = (atoms_fea,
-                                        input[1],
-                                        input[2],
-                                        input[3],
-                                        input[4],
-                                        input[5],
-                                        encoder_feature,
-                                        input[9][:,:9])
+                                input[1],
+                                input[2],
+                                input[3],
+                                input[4],
+                                input[5],
+                                encoder_feature,
+                                input[9][:,:9])
                     # pbe = model_pbe(*input_var)
                     # pbe = pbe_nor.denorm(pbe.data.cpu()).item()*num_atom
                     # bandgap = model_bandgap(*input_var)
@@ -156,23 +156,23 @@ def main():
                     chg = ddec_nor.denorm(chg.data.cpu())
                     name = cif_ids[0]+'_charge.npy'
                     np.save(""+name,chg)
-                    write4cif(path,"","","","","",charge = True)
+                    write4cif(path,"","",charge = True)
                     print("writing cif: " + cif_ids[0] + "_gcn.cif")
                     os.remove(cif_ids[0] + '.json')
                     os.remove(cif_ids[0] + '_cell.npy')
                     os.remove(cif_ids[0] + '_pos.npy')
                     os.remove(cif_ids[0] + '_charge.npy')
                     i+=1
-        except:
-            print("Fail predict: " + path)
-            fail[str(i)]=[path]
-            i += 1
+        # except:
+        #     print("Fail predict: " + path)
+        #     fail[str(i)]=[path]
+        #     i += 1
         # with open(path_d + "/preE.json",'w') as f:
         #     json.dump(dic,f)
         # f.close()
-        with open(folder_name + "fail.json",'w') as f:
-            json.dump(fail,f)
-        f.close()
+        # with open(folder_name + "fail.json",'w') as f:
+        #     json.dump(fail,f)
+        # f.close()
 
 if __name__ == "__main__":
     main()
