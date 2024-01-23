@@ -128,6 +128,7 @@ def write4cif(mof,chg,save_dir,charge = False):
         charges = []
         for c in gcn_charge:
             cc = c - sum_chg/len(gcn_charge)
+            # charges.append(round(c, 8))
             charges.append(round(cc, 8))
         # with open(save_dir + name + "_gcn.cif", 'r') as file:
         with open(name + ".cif", 'r') as file:
