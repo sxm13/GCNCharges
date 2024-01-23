@@ -156,7 +156,7 @@ def main():
                     chg = ddec_nor.denorm(chg.data.cpu())
                     name = cif_ids[0]+'_charge.npy'
                     np.save(""+name,chg)
-                    write4cif(path,"","","","",charge = True)
+                    write4cif(path,"","","","","",charge = True)
                     print("writing cif: " + cif_ids[0] + "_gcn.cif")
                     os.remove(cif_ids[0] + '.json')
                     os.remove(cif_ids[0] + '_cell.npy')
