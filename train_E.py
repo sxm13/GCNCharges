@@ -8,7 +8,7 @@ import torch.optim as optim
 from model.GCN_E import GCN
 from torch.optim.lr_scheduler import ExponentialLR
 from model.utils import Normalizer,sampling,save_checkpoint,AverageMeter,mae
-from model.data_pbe import collate_pool, get_train_val_test_loader, CIFData,GaussianDistance
+from model.data_E import collate_pool, get_train_val_test_loader, CIFData,GaussianDistance
 
 def main():
     model_folder = './pth/'
