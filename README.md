@@ -75,7 +75,7 @@ If you use CGCN Charge, please cite [this paper]():
 ├── model                                               # python files used for dataset prepartion & GCN training
 │   ├── GCN_E.py                                        # Networks model for energy/bandgap training
 │   ├── GCN_ddec.py                                     # Networks model for atomic charge training
-│   ├── cif2data.py                                     # convert cif ([QMOF](https://github.com/Andrew-S-Rosen/QMOF)) to dataset
+│   ├── cif2data.py                                     # convert cif [QMOF](https://github.com/Andrew-S-Rosen/QMOF) to dataset
 │   ├── data_E.py                                       # Loads in datalist from [./data_handling.py]. Split it into training, validation and testing dataset. Uses [./charge_prediction_system] for training the model [./model.py] and tests it
 │   ├── data_ddec.py                                    # Notebook for main.py
 │   └── utils.py                                        # Contains results from the MPNN
