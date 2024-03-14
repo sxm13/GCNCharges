@@ -62,9 +62,9 @@ If you use CGCN Charge, please cite [this paper]():
 
  
 # Development
-![Workflow of this work](./figs/workflow.png=100x100 "workflow")
+![Workflow of this work](./figs/workflow.png "workflow"){:height="100px" width="400px"}
 
-# Folder explain
+### Folder explain
 ```
 .
 ├── ..
