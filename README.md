@@ -7,6 +7,7 @@
 A MOF/COF charge predicter by **G**raph **C**onvolution **N**etwork.                           
 
 [![Requires Python 3.9](https://img.shields.io/badge/Python-3.9-blue.svg?logo=python&logoColor=white)](https://python.org/downloads)
+[![DOI: 10.5281/zenodo.123456](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.123456-blue)](https://doi.org/10.5281/zenodo.123456)           
 
 ![Logo](/figs/toc.jpg)              
 
@@ -40,8 +41,9 @@ file: your folder contains cif files
 model: MOF or COF                                                   
 there is an example in ```GCNCharge.ipynb```
 
-# Website
-IF you do not want to install GCN Charge, you can go to this :point_right: [link](https://gcn-charge-predicter-mtap.streamlit.app/)                    
+# Website & Zenodo
+IF you do not want to install GCN Charge, you can go to this :point_right: [link](https://gcn-charge-predicter-mtap.streamlit.app/)       
+IF you want to DOWNLOAD code and full dataset, you can go to this :point_right: [link](https://zenodo.org/records/)             
 
 # Reference
 If you use CGCN Charge, please cite [this paper]():
