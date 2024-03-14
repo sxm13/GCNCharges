@@ -64,14 +64,12 @@ If you use CGCN Charge, please cite [this paper]():
 # Development
 ![Workflow of this work](./figs/workflow.png "workflow")
 
-## Example notebooks
-
 | Database with DDEC Charges                                                                                                                                      | url                                                                                                                                        | size                                                                                                                                                                                                                                                                                                                                                                                              |
 | ---------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | QMOF | [link](https://github.com/Andrew-S-Rosen/QMOF) | 16,779 |
 | CoRE MOF 2014 DDEC | [link](https://zenodo.org/records/3986573#.XzfKiJMzY8N) | 2,932 |
 | CoRE MOF 2014 DFT-optimized | [link](https://zenodo.org/records/3986569#.XzfKcpMzY8N) | 502 | 
-| CURATED-COFs | https://github.com/danieleongari/CURATED-COFs | 612 |
+| CURATED-COFs | [link](https://github.com/danieleongari/CURATED-COFs) | 612 |
 
 ### Folder explain
 ```
