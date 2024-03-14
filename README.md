@@ -7,7 +7,7 @@
 A MOF/COF charge predicter by **G**raph **C**onvolution **N**etwork.                           
 
 [![Requires Python 3.9](https://img.shields.io/badge/Python-3.9-blue.svg?logo=python&logoColor=white)](https://python.org/downloads) [![Zenodo](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.123456-blue)](https://doi.org/10.5281/zenodo.123456)  [![MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/sxm13/GCNCharges/LICENSE.txt) [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sxmzhaogb@gmail.com) [![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)]() [![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)]()
-
+![GitHub stars](https://img.shields.io/github/stars/USERNAME/REPOSITORY.svg?style=social) ![Contributors](https://img.shields.io/github/contributors/USERNAME/REPOSITORY.svg) ![Downloads](https://img.shields.io/npm/dw/PACKAGE-NAME.svg) ![npm]https://img.shields.io/npm/v/PACKAGE-NAME.svg) ![Coverage](https://img.shields.io/codecov/c/github/USERNAME/REPOSITORY.svg) ![Build Status](https://img.shields.io/travis/com/USERNAME/REPOSITORY/master.svg)
 ![Logo](/figs/toc.jpg)              
 
 # Download
