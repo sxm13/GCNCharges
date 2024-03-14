@@ -56,15 +56,15 @@ If you use CGCN Charge, please cite [this paper]():
 }
 ```
 
-## Development & Bugs
+# Bugs
 
  If you encounter any problem during using ***GCN Charge***, please talk to me ```sxmzhaogb@gmail.com```.                   
 
  
-### Overall workflow
-![Workflow of this work](./figs/workflow.png "workflow")
+# Development
+![Workflow of this work](./figs/workflow.png=100x100 "workflow")
 
-# Structure of repository
+# Folder explain
 ```
 .
 ├── ..
@@ -109,16 +109,16 @@ If you use CGCN Charge, please cite [this paper]():
 │   ├── chk_pbe                                         # ///
 │       └── checkpoint.pth                              # ///
 │
-├── GCNCharge.ipynb                                     # CoRE v2 structures with MPNN charges assigned to them
-├── GCNCharge.py                                        # CoRE v2 structures with MPNN charges assigned to them
-├── GCNCharge4notebook.py                               # CoRE v2 structures with MPNN charges assigned to them
-├── LICENSE.txt                                         # CoRE v2 structures with MPNN charges assigned to them
-├── README.md                                           # CoRE v2 structures with MPNN charges assigned to them
-├── predict_E.py                                        # CoRE v2 structures with MPNN charges assigned to them
-├── predict_ddec.py                                     # CoRE v2 structures with MPNN charges assigned to them
-├── requirements.txt                                    # CoRE v2 structures with MPNN charges assigned to them
-├── train_E.py                                          # CoRE v2 structures with MPNN charges assigned to them
-└── train_ddec.py                                       # CoRE v2 structures with MPNN charges assigned to them
+├── GCNCharge.ipynb                                     # notebook example for atomic charge assignment
+├── GCNCharge.py                                        # main python file for atomic charge assignment by command line
+├── GCNCharge4notebook.py                               # main python file for atomic charge assignment by notebook
+├── LICENSE.txt                                         # MIT license
+├── README.md                                           # Usage/Source
+├── predict_E.py                                        # main python file for energy/bandgap prediction
+├── predict_ddec.py                                     # main python file for atomic charge prediction
+├── requirements.txt                                    # packages need to be installed
+├── train_E.py                                          # main python file for energy/bandgap training
+└── train_ddec.py                                       # main python file for atomic charge training
 
 ```
 
