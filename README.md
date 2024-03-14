@@ -42,7 +42,7 @@ there is an example in ```GCNCharge.ipynb```
 
 # Website & Zenodo
 IF you do not want to install GCN Charge, you can go to this :point_right: [link](https://gcn-charge-predicter-mtap.streamlit.app/)       
-IF you want to DOWNLOAD code and full dataset, you can go to this :point_right: [link](https://zenodo.org/records/)             
+IF you want to DOWNLOAD full code and dataset, you can go to this :point_right: [link](https://zenodo.org/records/)             
 
 # Reference
 If you use CGCN Charge, please cite [this paper]():
