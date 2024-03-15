@@ -44,7 +44,7 @@ IF you do not want to install GCN Charge, you can go to this :point_right: [link
 IF you want to DOWNLOAD full code and dataset, you can go to this :point_right: [link](https://zenodo.org/records/10822403)             
 
 # Reference
-If you use CGCN Charge, please cite [this paper]():
+If you use GCN Charge, please cite [this paper]():
 ```bib
 @article{,
     title={},
