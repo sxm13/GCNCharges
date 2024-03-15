@@ -101,22 +101,22 @@ If you use CGCN Charge, please cite [this paper]():
 │
 ├── pth                                                 # Models of this project
 │   ├── best_bandgap                                    # Bandgap
-│       ├── bandgap.pth                                 # Bandgap model
-│       └── normalizer-bandgap.pkl                      # Normalizer of bandgap
+│   │   ├── bandgap.pth                                 # Bandgap model
+│   │   └── normalizer-bandgap.pkl                      # Normalizer of bandgap
 │   ├── best_ddec                                       # MOF DDEC
-│       ├── ddec.pth                                    # ///
-│       └── normalizer-ddec.pkl                         # ///
+│   │   ├── ddec.pth                                    # ///
+│   │   └── normalizer-ddec.pkl                         # ///
 │   ├── best_ddec_COF                                   # ///
-│       ├── ddec.pth                                    # ///
-│       └── normalizer-ddec.pkl                         # ///
+│   │   ├── ddec.pth                                    # ///
+│   │   └── normalizer-ddec.pkl                         # ///
 │   ├── best_pbe                                        # ///
-│       ├── pbe-atom.pth                                # ///
-│       └── normalizer-pbe.pkl                          # ///
+│   │   ├── pbe-atom.pth                                # ///
+│   │   └── normalizer-pbe.pkl                          # ///
 │   ├── chk_bandgap                                     # Bandgap
-│       └── checkpoint.pth                              # Checkpoint of bandgap
+│   │   └── checkpoint.pth                              # Checkpoint of bandgap
 │   ├── chk_ddec                                        # ///
-│       └── checkpoint.pth                              # ///
-│   ├── chk_pbe                                         # ///
+│   │   └── checkpoint.pth                              # ///
+│   └── chk_pbe                                         # ///
 │       └── checkpoint.pth                              # ///
 │
 ├── GCNCharge.ipynb                                     # notebook example for atomic charge assignment
