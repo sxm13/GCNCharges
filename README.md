@@ -80,7 +80,7 @@ If you use GCN Charge, please cite [this paper]():
 ├── ..
 ├── figs                                                # Figures used for introduction 
 │   ├── toc.jpg                                         # Table of Contents
-│   ├── workflow.png                                    # Workflow of this project
+│   └── workflow.png                                    # Workflow of this project
 │
 ├── model                                               # Python files used for dataset prepartion & GCN training
 │   ├── GCN_E.py                                        # Networks model for energy/bandgap training
