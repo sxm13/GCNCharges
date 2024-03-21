@@ -40,8 +40,12 @@ periodic_table_symbols = [
     ]
 
 def CIF2json(mof, save_path):
-    structure = read(mof)
-    struct = AseAtomsAdaptor.get_structure(structure)
+    try:
+        structure = read(mof)
+        struct = AseAtomsAdaptor.get_structure(structure)
+    except:
+        struct = CifParser(mof, occupancy_tolerance=10)
+        struct.get_structures()
     _c_index, _n_index, _, n_distance = struct.get_neighbor_list(r=6, numerical_tol=0, exclude_self=True)
     _nonmax_idx = []
     for i in range(len(structure)):
@@ -81,7 +85,15 @@ def CIF2json(mof, save_path):
 def pre4pre(mof, save_cell_dir, save_pos_dir):
     name = mof.split('.cif')[0]
     try:
-        structure = mg.Structure.from_file(mof)
+        try:
+            structure = mg.Structure.from_file(mof)
+        except:
+            try:
+                atoms = read(mof)
+                structure = AseAtomsAdaptor.get_structure(atoms)
+            except:
+                structure = CifParser(mof, occupancy_tolerance=10)
+                structure.get_structures()
         coords = structure.frac_coords
         elements = [str(site.specie) for site in structure.sites]
         pos = []
