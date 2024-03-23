@@ -16,7 +16,8 @@ def GCNChagre(file,model,digits):
 
     source = importlib.import_module('model4pre')
     sys.modules['source'] = source
-
+    # if int(digits)<6:
+    print("Digits Warning: please note that this model is trained on 6 decimal places.")
     model_type = model
     model_name = "COF" if model_type == "COF" else "MOF"
     print(f"model name: {model_name}")
