@@ -26,22 +26,22 @@ You can put your cif files in any folder, but please run the code and jupyter no
 
 **bash**
 ```sh
-python GCNCharge.py [folder name] [MOF/COF]
+python GCNCharge.py [folder name] [MOF/COF] [digits]
 ```
-example: ```python GCNCharge.py test_file MOF```
+example: ```python GCNCharge.py test_file MOF 10```
 
 **notebook**
 ```sh
 import GCNCharge4notebook
-GCNCharge4notebook.GCNChagre(file="./test/test_cubtc/",model="MOF")
+GCNCharge4notebook.GCNChagre(file="./test/test_cubtc/",model="MOF",digits=10)
 ```
 file: your folder contains cif files                               
 model: MOF or COF                                                   
 there is an example in ```GCNCharge.ipynb```
 
 # Website & Zenodo
-IF you do not want to install GCN Charge, you can go to this :point_right: [link](https://gcn-charge-predicter-mtap.streamlit.app/)       
-IF you want to DOWNLOAD full code and dataset, you can go to this :point_right: [link](https://zenodo.org/records/10822403)             
+IF you do not want to install GCN Charge, you can go to this :point_right: [link](https://gcn-charge-predicter-mtap.streamlit.app/), for this website, we use 8 digits.       
+IF you want to DOWNLOAD full code and dataset, you can go to this :point_right: [link](https://zenodo.org/records/10822403) But we will not update new vesion in Zenodo, new vesion will upload here.            
 
 # Reference
 If you use GCN Charge, please cite [this paper]():
