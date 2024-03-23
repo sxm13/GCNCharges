@@ -21,6 +21,8 @@ def main():
         print("Usage: python GCNCharge.py [COF/MOF] digits")
         sys.exit(1)
     digits  = sys.argv[3]
+    # if int(digits)<6:
+    print("Digits Warning: please note that this model is trained on 6 decimal places.")
     model_type = sys.argv[2]
     model_name = "COF" if model_type == "COF" else "MOF"
     print(f"model name: {model_name}")
