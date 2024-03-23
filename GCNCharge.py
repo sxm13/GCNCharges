@@ -17,20 +17,15 @@ source = importlib.import_module('model4pre')
 sys.modules['source'] = source
 
 def main():
-    # if len(sys.argv) < 2:
-    #     print("miss your cif file or folder")
-    #     sys.exit(1)
-    # if len(sys.argv) > 2:
-    #     print("please just input one file or folder")
-    #     sys.exit(1)
-    if len(sys.argv) != 3:
-        print("Usage: python GCNCharge.py [COF/MOF]")
+    if len(sys.argv) != 4:
+        print("Usage: python GCNCharge.py [COF/MOF] digits")
         sys.exit(1)
+    digits  = sys.argv[3]
     model_type = sys.argv[2]
     model_name = "COF" if model_type == "COF" else "MOF"
     print(f"model name: {model_name}")
     path = sys.argv[1]
-    folder_name = path
+    # folder_name = path
     if os.path.isfile(path):
         print("please input a folder, not a file")
     elif os.path.isdir(path):
@@ -63,10 +58,10 @@ def main():
     all_cif_files = glob.glob(os.path.join(path, '*.cif'))
     cif_files = [f for f in all_cif_files if not f.endswith('_gcn.cif')]
     # dic = {}
-    # fail = {}
+    fail = []
     i = 0
     for path in tqdm(cif_files):
-        # try:
+        try:
             ase_format(path)
             CIF2json(path,save_path="")
             pre4pre(path,"","")
@@ -156,15 +151,16 @@ def main():
                     chg = ddec_nor.denorm(chg.data.cpu())
                     name = cif_ids[0]+'_charge.npy'
                     np.save(""+name,chg)
-                    write4cif(path,"","",charge = True)
+                    write4cif(path,"","",digits,charge = True)
                     print("writing cif: " + cif_ids[0] + "_gcn.cif")
                     os.remove(cif_ids[0] + '.json')
                     os.remove(cif_ids[0] + '_cell.npy')
                     os.remove(cif_ids[0] + '_pos.npy')
                     os.remove(cif_ids[0] + '_charge.npy')
                     i+=1
-        # except:
-        #     print("Fail predict: " + path)
+        except:
+            fail.append(path)
+            print("Fail predict: " + path)
         #     fail[str(i)]=[path]
         #     i += 1
         # with open(path_d + "/preE.json",'w') as f:
@@ -173,6 +169,6 @@ def main():
         # with open(folder_name + "fail.json",'w') as f:
         #     json.dump(fail,f)
         # f.close()
-
+    print("Fail list: ", fail)
 if __name__ == "__main__":
     main()

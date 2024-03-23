@@ -12,7 +12,7 @@ from model4pre.GCN_ddec import SemiFullGN
 from model4pre.data import collate_pool, get_data_loader, CIFData, load_gcn
 from model4pre.cif2data import ase_format, CIF2json, pre4pre, write4cif   #,n_atom
 
-def GCNChagre(file,model):
+def GCNChagre(file,model,digits):
 
     source = importlib.import_module('model4pre')
     sys.modules['source'] = source
@@ -21,7 +21,7 @@ def GCNChagre(file,model):
     model_name = "COF" if model_type == "COF" else "MOF"
     print(f"model name: {model_name}")
     path = file
-    folder_name = path
+    # folder_name = path
     if os.path.isfile(path):
         print("please input a folder, not a file")
     elif os.path.isdir(path):
@@ -108,7 +108,7 @@ def GCNChagre(file,model):
                     chg = ddec_nor.denorm(chg.data.cpu())
                     name = cif_ids[0]+'_charge.npy'
                     np.save(""+name,chg)
-                    write4cif(path,"","","","","",charge = True)
+                    write4cif(path,"","",digits,charge = True)
                     print("writing cif: " + cif_ids[0] + "_gcn.cif")
                     os.remove(cif_ids[0] + '.json')
                     os.remove(cif_ids[0] + '_cell.npy')
@@ -117,8 +117,8 @@ def GCNChagre(file,model):
                     i+=1
         except:
             print("Fail predict: " + path)
-            fail[str(i)]=[path]
-            i += 1
-        with open(folder_name + "fail.json",'w') as f:
-            json.dump(fail,f)
-        f.close()
+        #     fail[str(i)]=[path]
+        #     i += 1
+        # with open(folder_name + "fail.json",'w') as f:
+        #     json.dump(fail,f)
+        # f.close()
