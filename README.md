@@ -9,11 +9,7 @@ A MOF/COF charge predicter by **G**raph **C**onvolution **N**etwork.
 [![Requires Python 3.9](https://img.shields.io/badge/Python-3.9-blue.svg?logo=python&logoColor=white)](https://python.org/downloads) [![Zenodo](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.10822403-blue)](https://doi.org/10.5281/zenodo.10822403)  [![MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/sxm13/GCNCharges/LICENSE.txt) [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sxmzhaogb@gmail.com) [![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)]() [![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)]()          
 ![Logo](./figs/toc.jpg)                      
 
-# Download
 
-```sh
-git clone https://github.com/sxm13/GCNCharges.git
-```   
 
 # Installation                             
                                  
@@ -24,7 +20,13 @@ pip install GCNCharge
 ```
 
 **by source**                            
-        
+
+### Download
+
+```sh
+git clone https://github.com/sxm13/GCNCharges.git
+```   
+                               
 ```sh
 pip install -r requirements.txt
 ```
