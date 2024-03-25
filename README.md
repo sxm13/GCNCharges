@@ -15,8 +15,16 @@ A MOF/COF charge predicter by **G**raph **C**onvolution **N**etwork.
 git clone https://github.com/sxm13/GCNCharges.git
 ```   
 
-# Installation
+# Installation                             
+                                 
+**by pip**                                
 
+```sh
+pip install GCNCharge
+```
+
+**by source**                            
+        
 ```sh
 pip install -r requirements.txt
 ```
