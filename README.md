@@ -40,9 +40,16 @@ python GCNCharge.py [folder name] [MOF/COF] [digits]
 ```
 example: ```python GCNCharge.py test_file MOF 10```
 
-**notebook**
+**notebook(from pip)**                      
+                
+```sh      
+from GCNCharge import GCNCharge
+GCNCharge.predict(cif_file="Cu-BTC.cif",model_name="MOF",di=10,neutral=True)
+```
+
+**notebook(from source)**
 ```sh
-import GCNCharge4notebook
+import GCNCharge4notebook                                         
 GCNCharge4notebook.GCNChagre(file="./test/test_cubtc/",model="MOF",digits=10)
 ```
 file: your folder contains cif files                               
