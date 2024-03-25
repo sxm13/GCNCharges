@@ -13,7 +13,7 @@ A MOF/COF charge predicter by **G**raph **C**onvolution **N**etwork.
 
 # Installation                             
                                  
-## by pip                                
+## by [pip](https://pypi.org/project/GCNCharge/)                                                               
 
 ```sh
 pip install GCNCharge
