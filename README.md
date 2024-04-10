@@ -57,7 +57,7 @@ model: MOF or COF
 there is an example in ```GCNCharge.ipynb```
 
 # Website & Zenodo
-*  IF you do not want to install GCN Charge, you can go to this :point_right: [link](https://gcn-charge-predicter-mtap.streamlit.app/), for this website, we use 8 digits.       
+*  IF you do not want to install GCN Charge, you can go to this :point_right: [link](https://gcn-charge-predicter-mtap.streamlit.app/).       
 *  IF you want to DOWNLOAD full code and dataset, you can go to this :point_right: [link](https://zenodo.org/records/10822403) But we will not update new vesion in Zenodo, new vesion will upload here.            
 
 # Reference
