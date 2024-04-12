@@ -64,10 +64,10 @@ there is an example in ```GCNCharge.ipynb```
 If you use GCN Charge, please cite [this paper]():
 ```bib
 @article{,
-    title={},
+    title={A Robust Partial Atomic Charge Estimator for Nanoporous Materials using Crystal Graph Convolution Network},
     DOI={},
     journal={},
-    author={},
+    author={Zhao, Guobin and Chung, Yongchul},
     year={},
     pages={}
 }
