@@ -66,16 +66,16 @@ If you use GCN Charge, please cite [this paper]():
 @article{,
     title={A Robust Partial Atomic Charge Estimator for Nanoporous Materials using Crystal Graph Convolution Network},
     DOI={},
-    journal={},
+    journal={Journal of Chemical Theory and Computation},
     author={Zhao, Guobin and Chung, Yongchul},
-    year={},
+    year={2024},
     pages={}
 }
 ```
 
 # Bugs
 
- If you encounter any problem during using ***GCN Charge***, please talk to me ```sxmzhaogb@gmail.com```.                   
+ If you encounter any problem during using ***PACMAN***, please talk to me ```sxmzhaogb@gmail.com```.                   
 
  
 # Development
