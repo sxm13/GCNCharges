@@ -36,9 +36,9 @@ You can put your cif files in any folder, but please run the code and jupyter no
 
 **bash**
 ```sh
-python GCNCharge.py [folder name] [MOF/COF] [digits]
+python pacman.py [folder name] [MOF/COF] [digits]
 ```
-example: ```python GCNCharge.py test_file MOF 10```
+example: ```python pacman.py test_file MOF 10```
 
 :star: **notebook(from pip)**                      
                 
@@ -47,14 +47,8 @@ from GCNCharge import GCNCharge
 GCNCharge.predict(cif_file="Cu-BTC.cif",model_name="MOF",di=10,neutral=True)
 ```
 
-**notebook(from source)**
-```sh
-import GCNCharge4notebook                                         
-GCNCharge4notebook.GCNChagre(file="./test/test_cubtc/",model="MOF",digits=10)
-```
 file: your folder contains cif files                               
 model: MOF or COF                                                   
-there is an example in ```GCNCharge.ipynb```
 
 # Website & Zenodo
 *  IF you do not want to install PACMAN, you can go to this :point_right: [link](https://pacman-mtap.streamlit.app/).       
@@ -94,58 +88,58 @@ If you use GCN Charge, please cite [this paper]():
 ### Folder explain
 ```
 .
-├── ..
-├── figs                                                # Figures used for introduction 
-│   ├── toc.jpg                                         # Table of Contents
-│   └── workflow.png                                    # Workflow of this project
-│
-├── model                                               # Python files used for dataset prepartion & GCN training
-│   ├── GCN_E.py                                        # Networks model for energy/bandgap training
-│   ├── GCN_ddec.py                                     # Networks model for atomic charge training
-│   ├── cif2data.py                                     # Convert QMOF database to dataset
-│   ├── data_E.py                                       # Convert cif to graph & target (energy/bandgap)
-│   ├── data_ddec.py                                    # Convert cif to graph & target (atomic charge)
-│   └── utils.py                                        # Normalizer, sampling, AverageMeter, save_checkpoint
-│
-├── model4pre                                           # Python files used for prediction
-│   ├── GCN_E.py                                        # Networks model for energy/bandgap prediction
-│   ├── GCN_ddec.py                                     # Networks model for atomic charge prediction
-│   ├── atom_init.json                                  # 
-│   ├── cif2data.py                                     # Read/write cif file
-│   ├── data.py                                         # Convert cif to graph & target (energy/bandgap)
-│   ├── data_ddec.py                                    # Convert cif to graph & target (atomic charge)
-│   └── utils.py                                        # Normalizer, sampling, AverageMeter, save_checkpoint
-│
-├── pth                                                 # Models of this project
-│   ├── best_bandgap                                    # Bandgap
-│   │   ├── bandgap.pth                                 # Bandgap model
-│   │   └── normalizer-bandgap.pkl                      # Normalizer of bandgap
-│   ├── best_ddec                                       # MOF DDEC
-│   │   ├── ddec.pth                                    # ///
-│   │   └── normalizer-ddec.pkl                         # ///
-│   ├── best_ddec_COF                                   # ///
-│   │   ├── ddec.pth                                    # ///
-│   │   └── normalizer-ddec.pkl                         # ///
-│   ├── best_pbe                                        # ///
-│   │   ├── pbe-atom.pth                                # ///
-│   │   └── normalizer-pbe.pkl                          # ///
-│   ├── chk_bandgap                                     # Bandgap
-│   │   └── checkpoint.pth                              # Checkpoint of bandgap
-│   ├── chk_ddec                                        # ///
-│   │   └── checkpoint.pth                              # ///
-│   └── chk_pbe                                         # ///
-│       └── checkpoint.pth                              # ///
-│
-├── GCNCharge.ipynb                                     # notebook example for atomic charge assignment
-├── GCNCharge.py                                        # main python file for atomic charge assignment by command line
-├── GCNCharge4notebook.py                               # main python file for atomic charge assignment by notebook
-├── LICENSE.txt                                         # MIT license
-├── README.md                                           # Usage/Source
-├── predict_E.py                                        # main python file for energy/bandgap prediction
-├── predict_ddec.py                                     # main python file for atomic charge prediction
-├── requirements.txt                                    # packages need to be installed
-├── train_E.py                                          # main python file for energy/bandgap training
-└── train_ddec.py                                       # main python file for atomic charge training
+├─�? ..
+├─�? figs                                                # Figures used for introduction 
+�?   ├─�? toc.jpg                                         # Table of Contents
+�?   └─�? workflow.png                                    # Workflow of this project
+�?
+├─�? model                                               # Python files used for dataset prepartion & GCN training
+�?   ├─�? GCN_E.py                                        # Networks model for energy/bandgap training
+�?   ├─�? GCN_ddec.py                                     # Networks model for atomic charge training
+�?   ├─�? cif2data.py                                     # Convert QMOF database to dataset
+�?   ├─�? data_E.py                                       # Convert cif to graph & target (energy/bandgap)
+�?   ├─�? data_ddec.py                                    # Convert cif to graph & target (atomic charge)
+�?   └─�? utils.py                                        # Normalizer, sampling, AverageMeter, save_checkpoint
+�?
+├─�? model4pre                                           # Python files used for prediction
+�?   ├─�? GCN_E.py                                        # Networks model for energy/bandgap prediction
+�?   ├─�? GCN_ddec.py                                     # Networks model for atomic charge prediction
+�?   ├─�? atom_init.json                                  # 
+�?   ├─�? cif2data.py                                     # Read/write cif file
+�?   ├─�? data.py                                         # Convert cif to graph & target (energy/bandgap)
+�?   ├─�? data_ddec.py                                    # Convert cif to graph & target (atomic charge)
+�?   └─�? utils.py                                        # Normalizer, sampling, AverageMeter, save_checkpoint
+�?
+├─�? pth                                                 # Models of this project
+�?   ├─�? best_bandgap                                    # Bandgap
+�?   �?   ├─�? bandgap.pth                                 # Bandgap model
+�?   �?   └─�? normalizer-bandgap.pkl                      # Normalizer of bandgap
+�?   ├─�? best_ddec                                       # MOF DDEC
+�?   �?   ├─�? ddec.pth                                    # ///
+�?   �?   └─�? normalizer-ddec.pkl                         # ///
+�?   ├─�? best_ddec_COF                                   # ///
+�?   �?   ├─�? ddec.pth                                    # ///
+�?   �?   └─�? normalizer-ddec.pkl                         # ///
+�?   ├─�? best_pbe                                        # ///
+�?   �?   ├─�? pbe-atom.pth                                # ///
+�?   �?   └─�? normalizer-pbe.pkl                          # ///
+�?   ├─�? chk_bandgap                                     # Bandgap
+�?   �?   └─�? checkpoint.pth                              # Checkpoint of bandgap
+�?   ├─�? chk_ddec                                        # ///
+�?   �?   └─�? checkpoint.pth                              # ///
+�?   └─�? chk_pbe                                         # ///
+�?       └─�? checkpoint.pth                              # ///
+�?
+├─�? GCNCharge.ipynb                                     # notebook example for atomic charge assignment
+├─�? GCNCharge.py                                        # main python file for atomic charge assignment by command line
+├─�? GCNCharge4notebook.py                               # main python file for atomic charge assignment by notebook
+├─�? LICENSE.txt                                         # MIT license
+├─�? README.md                                           # Usage/Source
+├─�? predict_E.py                                        # main python file for energy/bandgap prediction
+├─�? predict_ddec.py                                     # main python file for atomic charge prediction
+├─�? requirements.txt                                    # packages need to be installed
+├─�? train_E.py                                          # main python file for energy/bandgap training
+└─�? train_ddec.py                                       # main python file for atomic charge training
 
 ```
 
