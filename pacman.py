@@ -13,21 +13,42 @@ from model4pre.GCN_ddec import SemiFullGN
 from model4pre.data import collate_pool, get_data_loader, CIFData, load_gcn
 from model4pre.cif2data import ase_format, CIF2json, pre4pre, write4cif   #,n_atom
 
+import warnings
+warnings.filterwarnings('ignore')
+
 source = importlib.import_module('model4pre')
 sys.modules['source'] = source
 
 def main():
-    if len(sys.argv) != 4:
-        print("Usage: python GCNCharge.py [COF/MOF] digits")
+    if len(sys.argv) != 6:
+        print("Usage: python GCNCharge.py model name[COF/MOF] digits [int] atom_type[True/False] neutral[True/False]")
         sys.exit(1)
-    digits  = sys.argv[3]
-    # if int(digits)<6:
-    print("Digits Warning: please note that this model is trained on 6 decimal places.")
+
+    path = sys.argv[1]
+    folder_name = path
+
     model_type = sys.argv[2]
     model_name = "COF" if model_type == "COF" else "MOF"
     print(f"model name: {model_name}")
-    path = sys.argv[1]
-    # folder_name = path
+
+    digits  = sys.argv[3]
+    # if int(digits)<6:
+    print("Note: model is trained on 6 digits.")
+    
+    atom_type  = sys.argv[4]
+    if atom_type:
+        print("atom type",atom_type)
+    else:
+        print("atom type",atom_type)
+
+    neutral  = sys.argv[5]
+    if neutral:
+        print("neutral",neutral)
+    else:
+        print("neutral",neutral)
+
+    print("writing cif: ***_gcn.cif")
+
     if os.path.isfile(path):
         print("please input a folder, not a file")
     elif os.path.isdir(path):
@@ -60,18 +81,18 @@ def main():
     all_cif_files = glob.glob(os.path.join(path, '*.cif'))
     cif_files = [f for f in all_cif_files if not f.endswith('_gcn.cif')]
     # dic = {}
-    fail = []
+    fail = {}
     i = 0
     for path in tqdm(cif_files):
         try:
             ase_format(path)
-            CIF2json(path,save_path="")
-            pre4pre(path,"","")
+            cif_data = CIF2json(path)
+            lattice, pos = pre4pre(path)
             # num_atom = n_atom(path)
             batch_size = 1
             num_workers = 0
             pin_memory = False
-            pre_dataset = CIFData(path,"","")
+            pre_dataset = CIFData(cif_data,lattice, pos)
             collate_fn = collate_pool
             pre_loader= get_data_loader(pre_dataset,collate_fn,batch_size,num_workers,pin_memory)
             structures, _, _ = pre_dataset[0]
@@ -151,26 +172,23 @@ def main():
                     # dic[cif_ids[0]] = [pbe,bandgap]
                     chg = model4chg(*input_var2)
                     chg = ddec_nor.denorm(chg.data.cpu())
-                    name = cif_ids[0]+'_charge.npy'
-                    np.save(""+name,chg)
-                    write4cif(path,"","",digits,charge = True)
-                    print("writing cif: " + cif_ids[0] + "_gcn.cif")
-                    os.remove(cif_ids[0] + '.json')
-                    os.remove(cif_ids[0] + '_cell.npy')
-                    os.remove(cif_ids[0] + '_pos.npy')
-                    os.remove(cif_ids[0] + '_charge.npy')
-                    i+=1
+                    write4cif(path,chg,digits,atom_type,neutral)
+                    
+            
         except:
-            fail.append(path)
             print("Fail predict: " + path)
-        #     fail[str(i)]=[path]
-        #     i += 1
+            fail[str(i)]=[path]
+            i += 1
         # with open(path_d + "/preE.json",'w') as f:
         #     json.dump(dic,f)
         # f.close()
-        # with open(folder_name + "fail.json",'w') as f:
-        #     json.dump(fail,f)
-        # f.close()
+
+        if i==0:
+            pass
+        else:
+            with open(folder_name + "fail.json",'w') as f:
+                json.dump(fail,f)
+            f.close()
     print("Fail list: ", fail)
 if __name__ == "__main__":
     main()

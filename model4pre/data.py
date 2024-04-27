@@ -101,8 +101,8 @@ class AtomCustomJSONInitializer(AtomInitializer):
 						self._embedding[key] = zz.reshape(1,-1)
     
 class CIFData(Dataset):
-    def __init__(self,mof,pos,cell,radius=6,dmin=0,step=0.2):
-        self.mof = mof
+    def __init__(self,json,cell,pos,radius=6,dmin=0,step=0.2):
+        self.json = json
         self.pos = pos
         self.cell = cell
         self.radius = radius
@@ -113,13 +113,12 @@ class CIFData(Dataset):
         return 1
     @functools.lru_cache(maxsize=None) 
     def __getitem__(self,_):
-        cif_id = self.mof.split('.cif')[0]
-        with open(os.path.join(cif_id+'.json')) as f:
-            crystal_data = json.load(f)
+        cif_id = "predicted"
+        crystal_data = self.json
         nums = crystal_data['numbers']
         atom_fea = np.vstack([self.ari.get_atom_fea(nn) for nn in nums])
-        pos = np.load(self.pos+cif_id+'_pos.npy')
-        cell = np.load(self.cell+cif_id+'_cell.npy').reshape(1,9)
+        pos = self.pos
+        cell = np.array(self.cell).reshape(1,9)
         cell_repeat = np.repeat(cell[0,0:9].reshape(1,9),len(nums),axis=0)
         index1 = np.array(crystal_data['index1'])
         nbr_fea_idx = np.array(crystal_data['index2'])
