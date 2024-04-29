@@ -38,12 +38,6 @@ from PACMANCharge import PACMaN
 PACMaN.predict(cif_file="./test/Cu-BTC.cif",model_name="MOF",charge_type="DDEC",digits=10,atom_type=True,neutral=True)
 
 ```
-                                  
-**bash**
-```sh
-python PACMaN.py folder-name[path] model-name[MOF/COF] digits[int] atom-type[True/False] neutral[True/False]
-```
-example: ```python PACMaN.py test_file/test-1/ MOF 10 True True```
 
 cif_file: cif file  
                                                                               
