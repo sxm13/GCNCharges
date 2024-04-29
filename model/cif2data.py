@@ -7,11 +7,9 @@ import pandas as pd
 from tqdm import tqdm
 import pymatgen.core as mg
 from ase.io import read
-from ase import Atoms,neighborlist
-from pymatgen.io.cif import CifWriter
+from ase import neighborlist
 from pymatgen.analysis import local_env
 from pymatgen.io.ase import AseAtomsAdaptor
-from pymatgen.core import Lattice, Structure
 from pymatgen.analysis.graphs import StructureGraph
 
 
@@ -208,3 +206,59 @@ def get_ddec_data(root_cif_dir,dataset_csv,save_ddec_dir):
                     ddec_data.append(ddec)
             np.save(save_ddec_dir + mof + '.npy', ddec_data)          
         f.close()
+
+def get_bader_data(root_cif_dir,dataset_csv,save_bader_dir):
+    mofs = pd.read_csv(dataset_csv)["name"]
+    for mof in mofs:
+        try:
+            bader_data = []
+            length = []
+            with open(root_cif_dir + mof + ".cif", 'r') as f:
+                lines = f.readlines()
+                idex_x = []
+                idex_bader = []
+                for i, line in enumerate(lines):
+                    if " _atom_site_pbe_bader_charge" in line:
+                        idex_bader.append(i + 1)
+                    elif "_atom_site_fract_x" in line:
+                        idex_x.append(i + 1)
+                diff_x_bader = int(idex_bader[0]) - int(idex_x[0])
+                for line in lines:
+                    length.append(len(line.split()))
+                for line in lines:
+                    if len(line.split()) == max(length):
+                        split_line = re.split(r"[ ]+", line)
+                        bader = float(split_line[diff_x_bader + 3])
+                        bader_data.append(bader)
+                np.save(save_bader_dir + mof + '.npy', bader_data)          
+            f.close()
+        except:
+            pass
+        
+def get_cm5_data(root_cif_dir,dataset_csv,save_cm5_dir):
+    mofs = pd.read_csv(dataset_csv)["name"]
+    for mof in mofs:
+        try:
+            cm5_data = []
+            length = []
+            with open(root_cif_dir + mof + ".cif", 'r') as f:
+                lines = f.readlines()
+                idex_x = []
+                idex_cm5 = []
+                for i, line in enumerate(lines):
+                    if " _atom_site_pbe_cm5_charge" in line:
+                        idex_cm5.append(i + 1)
+                    elif "_atom_site_fract_x" in line:
+                        idex_x.append(i + 1)
+                diff_x_cm5 = int(idex_cm5[0]) - int(idex_x[0])
+                for line in lines:
+                    length.append(len(line.split()))
+                for line in lines:
+                    if len(line.split()) == max(length):
+                        split_line = re.split(r"[ ]+", line)
+                        cm5 = float(split_line[diff_x_cm5 + 3])
+                        cm5_data.append(cm5)
+                np.save(save_cm5_dir + mof + '.npy', cm5_data)          
+            f.close()
+        except:
+            pass

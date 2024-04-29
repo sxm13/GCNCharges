@@ -6,7 +6,6 @@ import torch
 import pickle
 import sys
 import importlib
-import numpy as np
 from tqdm import tqdm
 # from model4pre.GCN_E import GCN
 from model4pre.GCN_ddec import SemiFullGN
@@ -20,7 +19,7 @@ source = importlib.import_module('model4pre')
 sys.modules['source'] = source
 
 def main():
-    if len(sys.argv) != 6:
+    if len(sys.argv) != 7:
         print("Usage: python GCNCharge.py model name[COF/MOF] digits [int] atom_type[True/False] neutral[True/False]")
         sys.exit(1)
 
@@ -31,17 +30,21 @@ def main():
     model_name = "COF" if model_type == "COF" else "MOF"
     print(f"model name: {model_name}")
 
-    digits  = sys.argv[3]
+    charge_type = sys.argv[3]
+    print(f"charge type: {charge_type}")
+    print("Note: for COF, just has DDEC charges.")
+
+    digits  = sys.argv[4]
     # if int(digits)<6:
     print("Note: model is trained on 6 digits.")
     
-    atom_type  = sys.argv[4]
+    atom_type  = sys.argv[5]
     if atom_type:
         print("atom type",atom_type)
     else:
         print("atom type",atom_type)
 
-    neutral  = sys.argv[5]
+    neutral  = sys.argv[6]
     if neutral:
         print("neutral",neutral)
     else:
@@ -60,13 +63,20 @@ def main():
     model_pbe_name = "./pth/best_pbe/pbe-atom.pth"
     # model_bandgap_name = "./pth/best_bandgap/bandgap.pth"
     if model_type == "COF":
-        model_ddec_name = "./pth/best_ddec_COF/ddec.pth"
-        ddec_nor_name = "./pth/best_ddec_COF/normalizer-ddec.pkl"
+        model_charge_name = "./pth/best_ddec_COF/ddec.pth"
+        charge_nor_name = "./pth/best_ddec_COF/normalizer-ddec.pkl"
     else:
-        model_ddec_name = "./pth/best_ddec/ddec.pth"
-        # pbe_nor_name = "./pth/best_pbe/normalizer-pbe.pkl"
-        # bandgap_nor_name = "./pth/best_bandgap/normalizer-bandgap.pkl"
-        ddec_nor_name = "./pth/best_ddec/normalizer-ddec.pkl"
+        if charge_type=="DDEC":
+            model_charge_name = "./pth/best_ddec/ddec.pth"
+            # pbe_nor_name = "./pth/best_pbe/normalizer-pbe.pkl"
+            # bandgap_nor_name = "./pth/best_bandgap/normalizer-bandgap.pkl"
+            charge_nor_name = "./pth/best_ddec/normalizer-ddec.pkl"
+        elif charge_type=="Bader":
+            model_charge_name = "./pth/best_bader/bader.pth"
+            charge_nor_name = "./pth/best_bader/normalizer-bader.pkl"
+        elif charge_type=="CM5":
+            model_charge_name = "./pth/best_cm5/cm5.pth"
+            charge_nor_name = "./pth/best_cm5/normalizer-cm5.pkl"
     gcn = load_gcn(model_pbe_name)
     # with open(pbe_nor_name, 'rb') as f:
     #     pbe_nor = pickle.load(f)
@@ -74,7 +84,7 @@ def main():
     # with open(bandgap_nor_name, 'rb') as f:
     #     bandgap_nor = pickle.load(f)
     # f.close()
-    with open(ddec_nor_name, 'rb') as f:
+    with open(charge_nor_name, 'rb') as f:
         ddec_nor = pickle.load(f)
     f.close()
 
@@ -122,12 +132,12 @@ def main():
             # model_bandgap.eval()
             chg_1 = structures[0].shape[-1] + 3
             chg_2 = structures[1].shape[-1]
-            chkpt_ddec = torch.load(model_ddec_name, map_location=torch.device(device))
+            chkpt_ddec = torch.load(model_charge_name, map_location=torch.device(device))
             model4chg = SemiFullGN(chg_1,chg_2,128,8,256)
             model4chg.cuda() if torch.cuda.is_available() else model4chg.to(device)
             model4chg.load_state_dict(chkpt_ddec['state_dict'])
             model4chg.eval()
-            for _, (input,cif_ids) in enumerate(pre_loader):
+            for _, (input,_) in enumerate(pre_loader):
                 with torch.no_grad():
                     if device == "cuda":
                         input_cuda = [input_tensor.to(device) for input_tensor in input]
