@@ -22,7 +22,7 @@ pip install PACMANCharge
 **Download**                          
 
 ```sh
-git clone https://github.com/sxm13/GCNCharges.git
+git clone https://github.com/sxm13/PACMAN.git
 ```   
                                
 ```sh
@@ -141,9 +141,7 @@ If you use PACMAN Charge, please cite [this paper]():
 │   └── chk_pbe                                         # ///
 │       └── checkpoint.pth                              # ///
 │
-├── GCNCharge.ipynb                                     # notebook example for atomic charge assignment
-├── GCNCharge.py                                        # main python file for atomic charge assignment by command line
-├── GCNCharge4notebook.py                               # main python file for atomic charge assignment by notebook
+├── PACMaN.py                                        # main python file for atomic charge assignment by command line
 ├── LICENSE.txt                                         # MIT license
 ├── README.md                                           # Usage/Source
 ├── predict_E.py                                        # main python file for energy/bandgap prediction
