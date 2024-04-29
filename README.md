@@ -46,12 +46,12 @@ python PACMaN.py folder-name[path] model-name[MOF/COF] charge-type[DDEC/Bader/CM
 ```
 example: ```python PACMaN.py test_file/test-1/ MOF DDEC 10 True True```
 
-folder-name: your folder contains cif files                               
-model_name& model-name: MOF or COF(COF just can use DDEC)   
-charge-type: Charge type, DDEC,Bader or CM5.             
-digits: digits of charge (recommond use 10)                                                       
-atom_type & atom-type: keep the same partial atomic charge for the same type atom                           
-
+* folder-name: your folder contains cif files                               
+* model_name& model-name: MOF or COF(COF just can use DDEC)   
+* charge-type: Charge type, DDEC,Bader or CM5.             
+* digits: digits of charge (recommond use 10)                                                       
+* atom_type & atom-type: keep the same partial atomic charge for the same type atom                                     
+* neutral: keep the net charge is zero                     
 
 # Website & Zenodo
 *  IF you do not want to install PACMAN, you can go to this :point_right: [link](https://pacman-mtap.streamlit.app/).       
