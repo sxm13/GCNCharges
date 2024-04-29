@@ -59,7 +59,7 @@ example: ```python PACMaN.py test_file/test-1/ MOF DDEC 10 True True```
 # Website & Zenodo
 * You can predict partial atomic charges using an online APP :point_right: [link](https://pacman-charge-mtap.streamlit.app/).       
 * Full code and dataset can be downloaded from :point_right: [link](https://zenodo.org/records/10822403)
-* Note: All future releases will be uploaded on Github only.
+* Note: All future releases will be uploaded on Github and pip only.
 
 # Reference
 If you use PACMAN Charge, please cite [this paper]():
@@ -118,10 +118,16 @@ If you use PACMAN Charge, please cite [this paper]():
 │   └── utils.py                                        # Normalizer, sampling, AverageMeter, save_checkpoint
 │
 ├── pth                                                 # Models of this project
+    ├── best_bader                                      # Bader
+│   │   ├── bader  .pth                                 # Bader charge model
+│   │   └── normalizer-bader.pkl                        # Normalizer of bandgap
 │   ├── best_bandgap                                    # Bandgap
 │   │   ├── bandgap.pth                                 # Bandgap model
 │   │   └── normalizer-bandgap.pkl                      # Normalizer of bandgap
-│   ├── best_ddec                                       # MOF DDEC
+    ├── best_cm5                                        # CM5
+│   │   ├── bandgap.pth                                 # ///
+│   │   └── normalizer-bandgap.pkl                      # ///
+│   ├── best_ddec                                       # ///
 │   │   ├── ddec.pth                                    # ///
 │   │   └── normalizer-ddec.pkl                         # ///
 │   ├── best_ddec_COF                                   # ///
@@ -130,14 +136,18 @@ If you use PACMAN Charge, please cite [this paper]():
 │   ├── best_pbe                                        # ///
 │   │   ├── pbe-atom.pth                                # ///
 │   │   └── normalizer-pbe.pkl                          # ///
+    ├── chk_bader                                       # Bader
+│   │   └── checkpoint.pth                              # Checkpoint of bader
 │   ├── chk_bandgap                                     # Bandgap
 │   │   └── checkpoint.pth                              # Checkpoint of bandgap
+    ├── chk_cm5                                         # CM5
+│   │   └── checkpoint.pth                              # ///
 │   ├── chk_ddec                                        # ///
 │   │   └── checkpoint.pth                              # ///
 │   └── chk_pbe                                         # ///
 │       └── checkpoint.pth                              # ///
 │
-├── PACMaN.py                                        # main python file for atomic charge assignment by command line
+├── PACMaN.py                                           # main python file for atomic charge assignment by command line
 ├── LICENSE.txt                                         # MIT license
 ├── README.md                                           # Usage/Source
 ├── predict_E.py                                        # main python file for energy/bandgap prediction

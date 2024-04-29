@@ -34,6 +34,9 @@ def main():
     print(f"charge type: {charge_type}")
     print("Note: for COF, just has DDEC charges.")
 
+    if model_name == "COF" and charge_type != "DDEC":
+        raise ValueError("For COF, please use DDEC charges.")
+
     digits  = sys.argv[4]
     # if int(digits)<6:
     print("Note: model is trained on 6 digits.")
@@ -50,7 +53,7 @@ def main():
     else:
         print("neutral",neutral)
 
-    print("writing cif: ***_gcn.cif")
+    print("writing cif: ***_pacman.cif")
 
     if os.path.isfile(path):
         print("please input a folder, not a file")
@@ -88,8 +91,8 @@ def main():
         ddec_nor = pickle.load(f)
     f.close()
 
-    all_cif_files = glob.glob(os.path.join(path, '*.cif'))
-    cif_files = [f for f in all_cif_files if not f.endswith('_gcn.cif')]
+    cif_files = glob.glob(os.path.join(path, '*.cif'))
+    
     # dic = {}
     fail = {}
     i = 0
@@ -184,7 +187,6 @@ def main():
                     chg = ddec_nor.denorm(chg.data.cpu())
                     write4cif(path,chg,digits,atom_type,neutral)
                     
-            
         except:
             print("Fail predict: " + path)
             fail[str(i)]=[path]

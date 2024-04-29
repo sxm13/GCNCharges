@@ -1,10 +1,7 @@
-import os
-import json
 import warnings
 import numpy as np
 import pymatgen.core as mg
 from ase.io import read,write
-# from ase.io.cif import read_cif, write_cif
 from pymatgen.io.ase import AseAtomsAdaptor
 from pymatgen.io.cif import CifParser
 from pymatgen.core import Structure
@@ -194,11 +191,11 @@ def write4cif(mof,chg,digits,atom_type,neutral):
         else:
             break
 
-    with open(name + "_gcn.cif", 'w') as file:
+    with open(name + "_pacman.cif", 'w') as file:
         file.writelines(lines)
     file.close()
 
-    with open(name + "_gcn.cif", 'r') as file:
+    with open(name + "_pacman.cif", 'r') as file:
         content = file.read()
     file.close()
 
@@ -206,7 +203,7 @@ def write4cif(mof,chg,digits,atom_type,neutral):
     new_content = new_content.replace('_space_group_IT_number', '_symmetry_Int_Tables_number')
     new_content = new_content.replace('_space_group_symop_operation_xyz', '_symmetry_equiv_pos_as_xyz')
 
-    with open(name + "_gcn.cif", 'wb') as file:
+    with open(name + "_pacman.cif", 'wb') as file:
         file.write(new_content.encode('utf-8'))
     file.close()
     
