@@ -158,4 +158,4 @@ If you use PACMAN Charge, please cite [this paper]():
 
 ```
  
-**Group:**   [Molecular Thermodynamics & Advance Processes Laboratory](https://sites.google.com/view/mtap-lab/home?authuser=0)                                
+**Group:**   [Molecular Thermodynamics & Advance Processes Laboratory](https://sites.google.com/view/mtap-lab/home?authuser=0)                                          
