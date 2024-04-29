@@ -158,4 +158,12 @@ If you use PACMAN Charge, please cite [this paper]():
 
 ```
  
+
 **Group:**   [Molecular Thermodynamics & Advance Processes Laboratory](https://sites.google.com/view/mtap-lab/home?authuser=0)                                
+
+
+## Refference
+   
+- Manz, T. A.; Sholl, D. S. Chemically Meaningful Atomic Charges That Reproduce the Electrostatic Potential in Periodic and Nonperiodic Materials. J Chem Theory Comput 2010, 6 (8), 2455-2468. [DDEC6](https://doi.org/10.1021/ct100125x)                              
+- Bader, R. F. W.; Matta, C. F. Atomic Charges Are Measurable Quantum Expectation Values: A Rebuttal of Criticisms of QTAIM Charges. The Journal of Physical Chemistry A 2004, 108 (40), 8385-8394. [Bader](https://doi.org/10.1021/jp0482666)                                                                                                             
+- Marenich, A. V.; Jerome, S. V.; Cramer, C. J.; Truhlar, D. G. Charge Model 5: An Extension of Hirshfeld Population Analysis for the Accurate Description of Molecular Interactions in Gaseous and Condensed Phases. J Chem Theory Comput 2012, 8 (2), 527-541. [CM5](https://doi.org/10.1021/ct200866d)                        
