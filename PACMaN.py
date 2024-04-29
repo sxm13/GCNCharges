@@ -185,7 +185,7 @@ def main():
                     # dic[cif_ids[0]] = [pbe,bandgap]
                     chg = model4chg(*input_var2)
                     chg = ddec_nor.denorm(chg.data.cpu())
-                    write4cif(path,chg,digits,atom_type,neutral)
+                    write4cif(path,chg,digits,atom_type,neutral,charge_type)
                     
         except:
             print("Fail predict: " + path)
