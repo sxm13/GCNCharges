@@ -4,7 +4,7 @@
 
 </h4>              
 
-**P**artial **A**tomic **C**harges for Porous **Ma**terials based on Graph Convolutional Neural **N**etwork (**PACMAN**)                           
+A **P**artial **A**tomic **C**harge Predicter for Porous **Ma**terials based on Graph Convolutional Neural **N**etwork (**PACMAN**)                           
 
 [![Requires Python 3.9](https://img.shields.io/badge/Python-3.9-blue.svg?logo=python&logoColor=white)](https://python.org/downloads)[![PyPI version](https://badge.fury.io/py/pyEQL.svg)](https://pypi.org/project/PACMANCharge/) [![Zenodo](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.10822403-blue)](https://doi.org/10.5281/zenodo.10822403)  [![MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/sxm13/PACMAN/LICENSE.txt) [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sxmzhaogb@gmail.com) [![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)]() [![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)]()          
                      
@@ -46,22 +46,23 @@ python PACMaN.py folder-name[path] model-name[MOF/COF] charge-type[DDEC/Bader/CM
 ```
 example: ```python PACMaN.py test_file/test-1/ MOF DDEC 10 True True```
 
-* folder-name: your folder contains cif files                               
-* model_name & model-name: MOF or COF (COF just can use DDEC)   
+* folder-name: folder with cif files (without partial atomic charges).                               
+* model_name & model-name: MOF or COF(COF just can use DDEC)   
 * charge-type: Charge type, DDEC, Bader or CM5.             
-* digits: digits of charge (recommond use 10)                                                       
-* atom_type & atom-type: keep the same partial atomic charge for the same type atom                                     
-* neutral: keep the net charge is zero                     
+* digits: digits of charge (recommond use 6). ML models were trained on 6 digit dataset.                                                       
+* atom_type & atom-type: keep the same partial atomic charge for the same atom types (based on the similarity of partial atomic charges).                                     
+* neutral: keep the net charge is zero. We use "mean" method to neuralize the system. Please refer to the manuscript about the method.                     
 
 # Website & Zenodo
-*  IF you do not want to install PACMAN, you can go to this :point_right: [link](https://pacman-charge-mtap.streamlit.app/).       
-*  IF you want to DOWNLOAD full code and dataset, you can go to this :point_right: [link](https://zenodo.org/records/10822403) But we will not update new vesion in Zenodo, new vesion will upload here.            
+* You can predict partial atomic charges using an online APP :point_right: [link](https://pacman-charge-mtap.streamlit.app/).       
+* Full code and dataset can be downloaded from :point_right: [link](https://zenodo.org/records/10822403)
+* Note: All future releases will be uploaded on Github only.
 
 # Reference
 If you use PACMAN Charge, please cite [this paper]():
 ```bib
 @article{,
-    title={A Robust Partial Atomic Charge Estimator for Nanoporous Materials using Crystal Graph Convolution Network},
+    title={PACMAN: A Robust Partial Atomic Charge Predicter for Nanoporous Materials using Crystal Graph Convolution Network},
     DOI={},
     journal={Journal of Chemical Theory and Computation},
     author={Zhao, Guobin and Chung, Yongchul},
@@ -72,7 +73,7 @@ If you use PACMAN Charge, please cite [this paper]():
 
 # Bugs
 
- If you encounter any problem during using ***PACMAN***, please talk to me ```sxmzhaogb@gmail.com```.                   
+ If you encounter any problem during using ***PACMAN***, please email ```sxmzhaogb@gmail.com``` or create "issues".
 
  
 # Development
