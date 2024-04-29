@@ -17,7 +17,7 @@ A **P**artial **A**tomic **C**harge Predicter for Porous **Ma**terials based on 
 :star: **by [pip](https://pypi.org/project/PACMANCharge/)**                                                              
 
 ```sh
-pip install PACMANCharge
+pip install PACMAN-Charge
 ```
 
 ## by source                                                                  
