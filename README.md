@@ -6,8 +6,8 @@
 
 A **P**artial **A**tomic **C**harge Predicter for Porous **Ma**terials based on Graph Convolutional Neural **N**etwork (**PACMAN**).
 
-- DDEC, Bader, CM5 for metal-organic frameworks (MOFs)
-- DDEC for covalent-organic frameworks (COFs)
+- DDEC6, Bader, CM5 for metal-organic frameworks (MOFs)
+- DDEC6 for covalent-organic frameworks (COFs)
 
 [![Requires Python 3.9](https://img.shields.io/badge/Python-3.9-blue.svg?logo=python&logoColor=white)](https://python.org/downloads)[![PyPI version](https://badge.fury.io/py/pyEQL.svg)](https://pypi.org/project/PACMANCharge/) [![Zenodo](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.10822403-blue)](https://doi.org/10.5281/zenodo.10822403)  [![MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/sxm13/PACMAN/LICENSE.txt) [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sxmzhaogb@gmail.com) [![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)]() [![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)]()          
                      
@@ -45,13 +45,13 @@ cif_file: cif file
                                   
 **bash**
 ```sh
-python PACMaN.py folder-name[path] model-name[MOF/COF] charge-type[DDEC/Bader/CM5] digits[int] atom-type[True/False] neutral[True/False]
+python PACMaN.py folder-name[path] model-name[MOF/COF] charge-type[DDEC6/Bader/CM5] digits[int] atom-type[True/False] neutral[True/False]
 ```
-example: ```python PACMaN.py test_file/test-1/ MOF DDEC 10 True True```
+example: ```python PACMaN.py test_file/test-1/ MOF DDEC6 10 True True```
 
 * folder-name: folder with cif files (without partial atomic charges).                               
-* model_name & model-name: MOF or COF(COF just can use DDEC)   
-* charge-type: Charge type, DDEC, Bader or CM5.             
+* model_name & model-name: MOF or COF(COF just can use DDEC6)   
+* charge-type: Charge type, DDEC6, Bader or CM5.             
 * digits: digits of charge (recommond use 6). ML models were trained on 6 digit dataset.                                                       
 * atom_type & atom-type: keep the same partial atomic charge for the same atom types (based on the similarity of partial atomic charges).                                     
 * neutral: keep the net charge is zero. We use "mean" method to neuralize the system. Please refer to the manuscript about the method.                     

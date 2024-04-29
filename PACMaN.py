@@ -32,10 +32,10 @@ def main():
 
     charge_type = sys.argv[3]
     print(f"charge type: {charge_type}")
-    print("Note: for COF, just has DDEC charges.")
+    print("Note: for COF, just has DDEC6 charges.")
 
-    if model_name == "COF" and charge_type != "DDEC":
-        raise ValueError("For COF, please use DDEC charges.")
+    if model_name == "COF" and charge_type != "DDEC6":
+        raise ValueError("For COF, please use DDEC6 charges.")
 
     digits  = sys.argv[4]
     # if int(digits)<6:
@@ -69,7 +69,7 @@ def main():
         model_charge_name = "./pth/best_ddec_COF/ddec.pth"
         charge_nor_name = "./pth/best_ddec_COF/normalizer-ddec.pkl"
     else:
-        if charge_type=="DDEC":
+        if charge_type=="DDEC6":
             model_charge_name = "./pth/best_ddec/ddec.pth"
             # pbe_nor_name = "./pth/best_pbe/normalizer-pbe.pkl"
             # bandgap_nor_name = "./pth/best_bandgap/normalizer-bandgap.pkl"
@@ -88,7 +88,7 @@ def main():
     #     bandgap_nor = pickle.load(f)
     # f.close()
     with open(charge_nor_name, 'rb') as f:
-        ddec_nor = pickle.load(f)
+        charge_nor = pickle.load(f)
     f.close()
 
     cif_files = glob.glob(os.path.join(path, '*.cif'))
@@ -135,10 +135,10 @@ def main():
             # model_bandgap.eval()
             chg_1 = structures[0].shape[-1] + 3
             chg_2 = structures[1].shape[-1]
-            chkpt_ddec = torch.load(model_charge_name, map_location=torch.device(device))
+            chkpt = torch.load(model_charge_name, map_location=torch.device(device))
             model4chg = SemiFullGN(chg_1,chg_2,128,8,256)
             model4chg.cuda() if torch.cuda.is_available() else model4chg.to(device)
-            model4chg.load_state_dict(chkpt_ddec['state_dict'])
+            model4chg.load_state_dict(chkpt['state_dict'])
             model4chg.eval()
             for _, (input,_) in enumerate(pre_loader):
                 with torch.no_grad():
@@ -184,7 +184,7 @@ def main():
                     # print("PBE energy and Bandgap of "+ cif_ids[0] + ": " + str(pbe) + " and " + str(bandgap) + " / ev")
                     # dic[cif_ids[0]] = [pbe,bandgap]
                     chg = model4chg(*input_var2)
-                    chg = ddec_nor.denorm(chg.data.cpu())
+                    chg = charge_nor.denorm(chg.data.cpu())
                     write4cif(path,chg,digits,atom_type,neutral,charge_type)
                     
         except:
