@@ -164,7 +164,12 @@ If you use PACMAN Charge, please cite [this paper]():
 
 ## Refference
    
-- Manz, T. A.; Sholl, D. S. Chemically Meaningful Atomic Charges That Reproduce the Electrostatic Potential in Periodic and Nonperiodic Materials. J Chem Theory Comput 2010, 6 (8), 2455-2468. [DDEC6](https://doi.org/10.1021/ct100125x)                              
+- Manz, T. A.; Sholl, D. S. Chemically Meaningful Atomic Charges That Reproduce the Electrostatic Potential in Periodic and Nonperiodic Materials. J Chem Theory Comput 2010, 6 (8), 2455-2468. [DDEC6](https://doi.org/10.1021/ct100125x)
+- Limas, N. G.; Manz, T. A. Introducing DDEC6 atomic population analysis: part 4. Efficient parallel computation of net atomic charges, atomic spin moments, bond orders, and more. RSC Adv. 2018, 8 (5), 2678-2707. [DDEC6](https://doi.org/10.1039/C7RA11829E)
+- Manz, T. A.; Limas, N. G. Introducing DDEC6 atomic population analysis: part 1. Charge partitioning theory and methodology. RSC Adv. 2016, 6 (53), 47771-47801.[DDEC6](https://doi.org/10.1039/C6RA04656H)
+- Limas, N. G.; Manz, T. A. Introducing DDEC6 atomic population analysis: part 2. Computed results for a wide range of periodic and nonperiodic materials. RSC Adv. 2016, 6 (51), 45727-45747. [DDEC6](https://doi.org/10.1039/C6RA05507A)
+- Manz, T. A. Introducing DDEC6 atomic population analysis: part 3. Comprehensive method to compute bond orders. RSC Adv. 2017, 7 (72), 45552-45581. [DDEC6](https://doi.org/10.1039/C7RA07400J)                          
+
 - Bader, R. F. W.; Matta, C. F. Atomic Charges Are Measurable Quantum Expectation Values: A Rebuttal of Criticisms of QTAIM Charges. The Journal of Physical Chemistry A 2004, 108 (40), 8385-8394. [Bader](https://doi.org/10.1021/jp0482666)                                                                                                             
 - Marenich, A. V.; Jerome, S. V.; Cramer, C. J.; Truhlar, D. G. Charge Model 5: An Extension of Hirshfeld Population Analysis for the Accurate Description of Molecular Interactions in Gaseous and Condensed Phases. J Chem Theory Comput 2012, 8 (2), 527-541. [CM5](https://doi.org/10.1021/ct200866d)                                                              
 
