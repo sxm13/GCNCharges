@@ -23,12 +23,10 @@ pip install PACMANCharge
 
 ```sh
 git clone https://github.com/sxm13/PACMAN.git
-```   
-                               
-```sh
+cd PACMAN
 pip install -r requirements.txt
-```
-
+```                            
+         
 # Charge Assignment               
            
 :star: **notebook(from pip)**                      
