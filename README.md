@@ -54,7 +54,7 @@ example: ```python PACMaN.py test_file/test-1/ MOF DDEC 10 True True```
 * neutral: keep the net charge is zero                     
 
 # Website & Zenodo
-*  IF you do not want to install PACMAN, you can go to this :point_right: [link](https://pacman-mtap.streamlit.app/).       
+*  IF you do not want to install PACMAN, you can go to this :point_right: [link](https://pacman-charge-mtap.streamlit.app/).       
 *  IF you want to DOWNLOAD full code and dataset, you can go to this :point_right: [link](https://zenodo.org/records/10822403) But we will not update new vesion in Zenodo, new vesion will upload here.            
 
 # Reference
