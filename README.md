@@ -35,8 +35,8 @@ pip install -r requirements.txt
 :star: **notebook(from pip)**                      
                 
 ```sh      
-from PACMANCharge import PACMaN
-PACMaN.predict(cif_file="./test/Cu-BTC.cif",model_name="MOF",charge_type="DDEC",digits=10,atom_type=True,neutral=True)
+from PACMANCharge import pmcharge
+PACMaN.predict(cif_file="./test/Cu-BTC.cif",model_name="MOF",charge_type="DDEC6",digits=10,atom_type=True,neutral=True)
 
 ```
 
