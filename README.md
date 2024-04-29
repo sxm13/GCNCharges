@@ -50,7 +50,7 @@ python PACMaN.py folder-name[path] model-name[MOF/COF] charge-type[DDEC/Bader/CM
 example: ```python PACMaN.py test_file/test-1/ MOF DDEC 10 True True```
 
 * folder-name: folder with cif files (without partial atomic charges).                               
-* model_name & model-name: MOF or COF(COF just can use DDEC)   
+* model_name & model-name: MOF or COF (COF just can use DDEC)   
 * charge-type: Charge type, DDEC, Bader or CM5.             
 * digits: digits of charge (recommond use 6). ML models were trained on 6 digit dataset.                                                       
 * atom_type & atom-type: keep the same partial atomic charge for the same atom types (based on the similarity of partial atomic charges).                                     
