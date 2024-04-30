@@ -6,8 +6,9 @@
 
 A **P**artial **A**tomic **C**harge Predicter for Porous **Ma**terials based on Graph Convolutional Neural **N**etwork (**PACMAN**)
 
-- DDEC6, Bader, CM5 for metal-organic frameworks (MOFs)
+- DDEC6 [1](https://doi.org/10.1021/ct100125x)[2](https://doi.org/10.1039/C6RA04656H)[3](https://doi.org/10.1039/C6RA05507A)[4](https://doi.org/10.1039/C7RA07400J)[5](https://doi.org/10.1039/C7RA11829E), [Bader](https://doi.org/10.1021/jp0482666), [Charge Model 5 (CM5)](https://doi.org/10.1021/ct200866d) for metal-organic frameworks (MOFs)
 - DDEC6 for covalent-organic frameworks (COFs)
+
 
 [![Requires Python 3.9](https://img.shields.io/badge/Python-3.9-blue.svg?logo=python&logoColor=white)](https://python.org/downloads)[![PyPI version](https://badge.fury.io/py/pyEQL.svg)](https://pypi.org/project/PACMANCharge/) [![Zenodo](https://img.shields.io/badge/DOI-10.5281%2Fzenodo.10822403-blue)](https://doi.org/10.5281/zenodo.10822403)  [![MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/sxm13/PACMAN/LICENSE.txt) [![Gmail](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:sxmzhaogb@gmail.com) [![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)]() [![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)]()          
                      
@@ -49,15 +50,15 @@ python PACMaN.py folder-name[path] model-name[MOF/COF] charge-type[DDEC6/Bader/C
 ```
 example: ```python PACMaN.py test_file/test-1/ MOF DDEC6 10 True True```
 
-* folder-name: folder with cif files (without partial atomic charges).                               
-* model_name & model-name: MOF or COF(COF just can use DDEC6)   
-* charge-type: Charge type, DDEC6, Bader or CM5.             
-* digits: digits of charge (recommond use 6). ML models were trained on 6 digit dataset.                                                       
-* atom_type & atom-type: keep the same partial atomic charge for the same atom types (based on the similarity of partial atomic charges).                                     
-* neutral: keep the net charge is zero. We use "mean" method to neuralize the system. Please refer to the manuscript about the method.                     
+* folder-name: relative path to a folder with cif files without partial atomic charges                            
+* model-name (default:MOF): MOF or COF
+* charge-type (default:DDE6): DDEC6, Bader or CM5
+* digits (default: 6): number of decimal places to print for partial atomic charges. ML models were trained on a 6-digit dataset.                                                     
+* atom-type (default: True): keep the same partial atomic charge for the same atom types (based on the similarity of partial atomic charges up to 2 decimal places).                                     
+* neutral (default: True): keep the net charge is zero. We use "mean" method to neuralize the system where the excess charges are equally distributed across all atoms.                   
 
 # Website & Zenodo
-* You can predict partial atomic charges using an online APP :point_right: [link](https://pacman-charge-mtap.streamlit.app/).       
+* Predict partial atomic charges using an online APP :point_right: [link](https://pacman-charge-mtap.streamlit.app/).       
 * Full code and dataset can be downloaded from :point_right: [link](https://zenodo.org/records/10822403)
 * Note: All future releases will be uploaded on Github and pip only.
 
@@ -76,7 +77,7 @@ If you use PACMAN Charge, please cite [this paper]():
 
 # Bugs
 
- If you encounter any problem during using ***PACMAN***, please email ```sxmzhaogb@gmail.com``` or create "issues".
+ If you encounter any problem during using **PACMAN**, please email ```sxmzhaogb@gmail.com``` or create "issues".
 
  
 # Development
@@ -158,18 +159,3 @@ If you use PACMAN Charge, please cite [this paper]():
 
 ```
  
-
-**Group:**   [Molecular Thermodynamics & Advance Processes Laboratory](https://sites.google.com/view/mtap-lab/home?authuser=0)                                
-
-
-## Refference
-   
-- Manz, T. A.; Sholl, D. S. Chemically Meaningful Atomic Charges That Reproduce the Electrostatic Potential in Periodic and Nonperiodic Materials. J Chem Theory Comput 2010, 6 (8), 2455-2468. [DDEC6](https://doi.org/10.1021/ct100125x)
-- Limas, N. G.; Manz, T. A. Introducing DDEC6 atomic population analysis: part 4. Efficient parallel computation of net atomic charges, atomic spin moments, bond orders, and more. RSC Adv. 2018, 8 (5), 2678-2707. [DDEC6](https://doi.org/10.1039/C7RA11829E)
-- Manz, T. A.; Limas, N. G. Introducing DDEC6 atomic population analysis: part 1. Charge partitioning theory and methodology. RSC Adv. 2016, 6 (53), 47771-47801.[DDEC6](https://doi.org/10.1039/C6RA04656H)
-- Limas, N. G.; Manz, T. A. Introducing DDEC6 atomic population analysis: part 2. Computed results for a wide range of periodic and nonperiodic materials. RSC Adv. 2016, 6 (51), 45727-45747. [DDEC6](https://doi.org/10.1039/C6RA05507A)
-- Manz, T. A. Introducing DDEC6 atomic population analysis: part 3. Comprehensive method to compute bond orders. RSC Adv. 2017, 7 (72), 45552-45581. [DDEC6](https://doi.org/10.1039/C7RA07400J)                          
-
-- Bader, R. F. W.; Matta, C. F. Atomic Charges Are Measurable Quantum Expectation Values: A Rebuttal of Criticisms of QTAIM Charges. The Journal of Physical Chemistry A 2004, 108 (40), 8385-8394. [Bader](https://doi.org/10.1021/jp0482666)                                                                                                             
-- Marenich, A. V.; Jerome, S. V.; Cramer, C. J.; Truhlar, D. G. Charge Model 5: An Extension of Hirshfeld Population Analysis for the Accurate Description of Molecular Interactions in Gaseous and Condensed Phases. J Chem Theory Comput 2012, 8 (2), 527-541. [CM5](https://doi.org/10.1021/ct200866d)                                                              
-
