@@ -48,7 +48,7 @@ cif_file: cif file
 ```sh
 python PACMaN.py folder-name[path] --model_name[MOF/COF] --charge_type[DDEC6/Bader/CM5] --digits[int] --atom_type[True/False] --neutral[True/False]
 ```
-example: ```python PACMaN.py test_file/test-1/ --model_name MOF --charge_type DDEC6 --digits 10 --atom_type True --neutral True```
+example: ```python PACMaN.py test_file/test-1/ --model_name MOF --charge_type DDEC6 --digits 10 --atom_type True --neutral True```                                                    
 useage:  ```python PACMaN.py -h```                                     
 
 * folder-name: relative path to a folder with cif files without partial atomic charges                            
