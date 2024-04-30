@@ -63,7 +63,7 @@ example: ```python PACMaN.py test_file/test-1/ MOF DDEC6 10 True True```
 * Note: All future releases will be uploaded on Github and pip only.
 
 # Reference
-If you use PACMAN Charge, please cite [this paper]():
+If you use PACMAN charge, please consider citing [this paper]():
 ```bib
 @article{,
     title={PACMAN: A Robust Partial Atomic Charge Predicter for Nanoporous Materials using Crystal Graph Convolution Network},
