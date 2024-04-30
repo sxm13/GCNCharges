@@ -4,7 +4,7 @@
 
 </h4>              
 
-A **P**artial **A**tomic **C**harge Predicter for Porous **Ma**terials based on Graph Convolutional Neural **N**etwork (**PACMAN**).
+A **P**artial **A**tomic **C**harge Predicter for Porous **Ma**terials based on Graph Convolutional Neural **N**etwork (**PACMAN**)
 
 - DDEC6, Bader, CM5 for metal-organic frameworks (MOFs)
 - DDEC6 for covalent-organic frameworks (COFs)
