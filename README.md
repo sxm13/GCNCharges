@@ -6,7 +6,7 @@
 
 A **P**artial **A**tomic **C**harge Predicter for Porous **Ma**terials based on Graph Convolutional Neural **N**etwork (**PACMAN**)
 
-- DDEC6 [[1](https://doi.org/10.1021/ct100125x), [2](https://doi.org/10.1039/C6RA04656H), [3](https://doi.org/10.1039/C6RA05507A), [4](https://doi.org/10.1039/C7RA07400J), [5](https://doi.org/10.1039/C7RA11829E)], [Bader](https://doi.org/10.1021/jp0482666), [Charge Model 5 (CM5)](https://doi.org/10.1021/ct200866d) for metal-organic frameworks (MOFs)
+- DDEC6 ([1](https://doi.org/10.1021/ct100125x), [2](https://doi.org/10.1039/C6RA04656H), [3](https://doi.org/10.1039/C6RA05507A), [4](https://doi.org/10.1039/C7RA07400J), [5](https://doi.org/10.1039/C7RA11829E)), [Bader](https://doi.org/10.1021/jp0482666), [Charge Model 5 (CM5)](https://doi.org/10.1021/ct200866d) for metal-organic frameworks (MOFs)
 - DDEC6 for covalent-organic frameworks (COFs)
 
 
