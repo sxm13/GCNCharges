@@ -5,6 +5,7 @@ import json
 import torch
 import pickle
 import sys
+import argparse
 import importlib
 from tqdm import tqdm
 # from model4pre.GCN_E import GCN
@@ -19,42 +20,33 @@ source = importlib.import_module('model4pre')
 sys.modules['source'] = source
 
 def main():
-    if len(sys.argv) != 7:
-        print("Usage: python PACMaN.py model name[COF/MOF] digits [int] atom_type[True/False] neutral[True/False]")
+
+    parser = argparse.ArgumentParser(description="Run PACMaN with the specified configurations")
+    parser.add_argument('folder_name', type=str, help='relative path to a folder with cif files without partial atomic charges')
+    parser.add_argument('--model_name', type=str, default='MOF', choices=['MOF', 'COF'], help='Model name (MOF or COF)')
+    parser.add_argument('--charge_type', type=str, default='DDEC6', choices=['DDEC6', 'Bader', 'CM5'], help='Type of charges to use, DDEC6, Bader or CM5')
+    parser.add_argument('--digits', type=int, default=6, help='Number of digits for precision')
+    parser.add_argument('--atom_type', type=bool, default=True, help='keep the same partial atomic charge for the same atom types')
+    parser.add_argument('--neutral', type=bool, default=True, help='keep the net charge is zero')
+    args = parser.parse_args()
+    print(f"Folder Name: {args.folder_name}")
+    print(f"Model Name: {args.model_name}")
+    print(f"Charge Type: {args.charge_type}")
+    print(f"Digits: {args.digits}")
+    print(f"Atom Type: {args.atom_type}")
+    print(f"Neutral: {args.neutral}")
+
+    if args.model_name == "COF" and args.charge_type != "DDEC6":
+        print("Error: For COF, please use DDEC6 charges.")
         sys.exit(1)
 
-    path = sys.argv[1]
-    folder_name = path
-
-    model_type = sys.argv[2]
-    model_name = "COF" if model_type == "COF" else "MOF"
-    print(f"model name: {model_name}")
-
-    charge_type = sys.argv[3]
-    print(f"charge type: {charge_type}")
-    print("Note: for COF, just has DDEC6 charges.")
-
-    if model_name == "COF" and charge_type != "DDEC6":
-        raise ValueError("For COF, please use DDEC6 charges.")
-
-    digits  = sys.argv[4]
-    # if int(digits)<6:
-    print("Note: model is trained on 6 digits.")
+    path = args.folder_name
+    model_type = args.model_name
+    charge_type =  args.charge_type
+    digits = args.digits
+    atom_type = args.atom_type
+    neutral = args.neutral
     
-    atom_type  = sys.argv[5]
-    if atom_type:
-        print("atom type",atom_type)
-    else:
-        print("atom type",atom_type)
-
-    neutral  = sys.argv[6]
-    if neutral:
-        print("neutral",neutral)
-    else:
-        print("neutral",neutral)
-
-    print("writing cif: ***_pacman.cif")
-
     if os.path.isfile(path):
         print("please input a folder, not a file")
     elif os.path.isdir(path):
@@ -92,7 +84,9 @@ def main():
     f.close()
 
     cif_files = glob.glob(os.path.join(path, '*.cif'))
-    
+
+    print("writing cif: ***_pacman.cif")
+
     # dic = {}
     fail = {}
     i = 0
