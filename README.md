@@ -94,7 +94,7 @@ If you use PACMAN charge, please consider citing [this paper]():
 #### Workflow            
 <img src="./figs/workflow.png" alt="workflow" width="500">             
                     
-### Folder explain
+### Folder contents
 ```
 .
 ├── ..
