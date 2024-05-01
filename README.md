@@ -46,14 +46,14 @@ cif_file: cif file
                                   
 **bash**
 ```sh
-python PACMaN.py folder-name[path] --model_name[MOF/COF] --charge_type[DDEC6/Bader/CM5] --digits[int] --atom_type[True/False] --neutral[True/False]
+python pmcharge.py folder-name[path] --model_name[MOF/COF] --charge_type[DDEC6/Bader/CM5] --digits[int] --atom_type[True/False] --neutral[True/False]
 ```
-example: ```python PACMaN.py test_file/test-1/ --model_name MOF --charge_type DDEC6 --digits 10 --atom_type True --neutral True```                                                    
-usage:  ```python PACMaN.py -h```                                     
+example: ```python pmcharge.py test_file/test-1/ --model_name MOF --charge_type DDEC6 --digits 10 --atom_type True --neutral True```                                                    
+usage:  ```python pmcharge.py -h```                                     
 
 * folder-name: relative path to a folder with cif files without partial atomic charges                            
-* model-name (default:MOF): MOF or COF
-* charge-type (default:DDE6): DDEC6, Bader or CM5
+* model-name (default: MOF): MOF or COF
+* charge-type (default: DDE6): DDEC6, Bader or CM5
 * digits (default: 6): number of decimal places to print for partial atomic charges. ML models were trained on a 6-digit dataset.                                                     
 * atom-type (default: True): keep the same partial atomic charge for the same atom types (based on the similarity of partial atomic charges up to 2 decimal places).                                     
 * neutral (default: True): keep the net charge is zero. We use "mean" method to neuralize the system where the excess charges are equally distributed across all atoms.                   
