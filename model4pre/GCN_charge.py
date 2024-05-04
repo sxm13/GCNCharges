@@ -48,7 +48,6 @@ class SemiFullGN(nn.Module):
         self.convs = nn.ModuleList([ConvLayer(atom_fea_len=atom_fea_len,nbr_fea_len=atom_fea_len) for _ in range(n_conv)])
         self.feature_embedding = nn.Sequential(nn.Linear(n_feature,512))
         self.atom_nbr_fea_embedding = nn.Sequential(nn.Linear(2*atom_fea_len,128))
-        self.cell_embedding = nn.Sequential(nn.Linear(9,128))
         self.phi_pos = nn.Sequential(nn.Linear(512+128,512),
                                      nn.BatchNorm1d(512),
                                      nn.LeakyReLU(0.2))
