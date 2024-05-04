@@ -56,6 +56,7 @@ class SemiFullGN(nn.Module):
                                    nn.Conv1d(512,256,3,stride=1,padding=1),nn.LeakyReLU(0.2),
                                    nn.Conv1d(256,256,3,stride=1,padding=1),nn.LeakyReLU(0.2),
                                    nn.Conv1d(256,1,kernel_size=4,stride=1,padding=0))
+        self.cell_embedding = nn.Sequential(nn.Linear(9,128)) # remove
     def forward(self,atom_fea,nbr_fea,nbr_fea_idx1,nbr_fea_idx2,num_nbrs,atom_idx,structure_feature):
         nbr_fea_idx1 = nbr_fea_idx1.cuda() if torch.cuda.is_available() else nbr_fea_idx1
         nbr_fea_idx2 = nbr_fea_idx2.cuda() if torch.cuda.is_available() else nbr_fea_idx2
