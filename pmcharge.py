@@ -134,24 +134,6 @@ def main():
             model4chg.eval()
             for _, (input) in enumerate(pre_loader):
                 with torch.no_grad():
-                    # if device == "cuda":
-                    #     input_cuda = [input_tensor.to(device) for input_tensor in input]
-                    #     input_var = (input_cuda[0].cuda(),
-                    #                     input_cuda[1].cuda(),
-                    #                     input_cuda[2].cuda(),
-                    #                     input_cuda[3].cuda(),
-                    #                     input_cuda[4].cuda(),
-                    #                     input_cuda[5].cuda())
-                    #     encoder_feature = gcn.Encoding(*input_var)
-                    #     atoms_fea = torch.cat((input_cuda[0],input_cuda[7]),dim=-1)
-                    #     input_var2 = (atoms_fea.cuda(),
-                    #                     input_cuda[1].cuda(),
-                    #                     input_cuda[2].cuda(),
-                    #                     input_cuda[3].cuda(),
-                    #                     input_cuda[4].cuda(),
-                    #                     input_cuda[5].cuda(),
-                    #                     encoder_feature.cuda())
-                    # else:
                     input_var = (input[0].to(device),
                                     input[1].to(device),
                                     input[2].to(device),
