@@ -45,18 +45,18 @@ class ConvLayer(nn.Module):
 class GCN(nn.Module):
     def __init__(self,orig_atom_fea_len,nbr_fea_len,atom_fea_len,n_conv,h_fea_len,n_h):    
         super(GCN, self).__init__()
-        self.node_embedding = nn.Linear(orig_atom_fea_len,atom_fea_len)
-        self.edge_embedding = nn.Linear(nbr_fea_len,atom_fea_len)
-        self.convs = nn.ModuleList([ConvLayer(atom_fea_len=atom_fea_len,nbr_fea_len=atom_fea_len) for _ in range(n_conv)])
-        self.phi_u = nn.Sequential(nn.Linear(2*atom_fea_len,h_fea_len),nn.LeakyReLU(0.2),
-				   nn.Linear(h_fea_len,h_fea_len),nn.Tanh())
-        self.conv_to_fc = nn.Linear(h_fea_len, h_fea_len)
-        self.conv_to_fc_lrelu = nn.LeakyReLU(0.2)
+        self.node_embedding = nn.Linear(orig_atom_fea_len,atom_fea_len).to(device)
+        self.edge_embedding = nn.Linear(nbr_fea_len,atom_fea_len).to(device)
+        self.convs = nn.ModuleList([ConvLayer(atom_fea_len=atom_fea_len,nbr_fea_len=atom_fea_len) for _ in range(n_conv)]).to(device)
+        self.phi_u = nn.Sequential(nn.Linear(2*atom_fea_len,h_fea_len).to(device),nn.LeakyReLU(0.2).to(device),
+				   nn.Linear(h_fea_len,h_fea_len).to(device),nn.Tanh().to(device))
+        self.conv_to_fc = nn.Linear(h_fea_len, h_fea_len).to(device)
+        self.conv_to_fc_lrelu = nn.LeakyReLU(0.2).to(device)
         if n_h > 1:
-            self.fcs = nn.ModuleList([nn.Linear(h_fea_len, h_fea_len) for _ in range(n_h-1)])
-            self.activations = nn.ModuleList([nn.LeakyReLU(0.2) for _ in range(n_h-1)])
-            self.bns = nn.ModuleList([nn.BatchNorm1d(h_fea_len) for _ in range(n_h-1)])
-        self.fc_out = nn.Linear(h_fea_len,1)
+            self.fcs = nn.ModuleList([nn.Linear(h_fea_len, h_fea_len).to(device) for _ in range(n_h-1)])
+            self.activations = nn.ModuleList([nn.LeakyReLU(0.2).to(device) for _ in range(n_h-1)])
+            self.bns = nn.ModuleList([nn.BatchNorm1d(h_fea_len).to(device) for _ in range(n_h-1)])
+        self.fc_out = nn.Linear(h_fea_len,1).to(device)
     def forward(self,atom_fea,nbr_fea,nbr_fea_idx1,nbr_fea_idx2,num_nbrs,crystal_atom_idx):
         z = self.Encoding(atom_fea, nbr_fea, nbr_fea_idx1, nbr_fea_idx2, num_nbrs, crystal_atom_idx)
         out = self.Regressor(z)

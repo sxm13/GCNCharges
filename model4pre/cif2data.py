@@ -59,7 +59,10 @@ def CIF2json(mof):
     dij = n_distance[_nonmax_idx]
     numbers = []
     # s_data = mg.Structure.from_file(mof)
-    elements = [str(site.specie) for site in struct.sites]
+    try:
+        elements = [str(site.specie) for site in struct.sites]
+    except:
+        elements = [str(site.species) for site in struct.sites]
     for i in range(len(elements)):
         ele = elements[i]
         atom_index = periodic_table_symbols.index(ele)
@@ -94,9 +97,11 @@ def pre4pre(mof):
                 structure = CifParser(mof, occupancy_tolerance=10)
                 structure.get_structures()
         coords = structure.frac_coords
-        elements = [str(site.specie) for site in structure.sites]
+        try:
+            elements = [str(site.specie) for site in structure.sites]
+        except:
+            elements = [str(site.species) for site in structure.sites]
         pos = []
-        lattice = structure.lattice.matrix
         for i in range(len(elements)):
             x = coords[i][0]
             y = coords[i][1]
@@ -106,12 +111,15 @@ def pre4pre(mof):
         pass
         # print(f"An error occurred while finding cell and position of {name}: {e}")
 
-    return lattice, pos
+    return pos
 
 def n_atom(mof):
     structure = mg.Structure.from_file(mof)
     name = mof.split('.cif')[0]
-    elements = [str(site.specie) for site in structure.sites]
+    try:
+        elements = [str(site.specie) for site in structure.sites]
+    except:
+        elements = [str(site.species) for site in structure.sites]
     print("number of atoms of " + name +": ", len(elements))
     return len(elements)
 
@@ -206,4 +214,4 @@ def write4cif(mof,chg,digits,atom_type,neutral,charge_type):
     with open(name + "_pacman.cif", 'wb') as file:
         file.write(new_content.encode('utf-8'))
     file.close()
-    
+    print("Compelete and save as "+ name + "_pacman.cif")

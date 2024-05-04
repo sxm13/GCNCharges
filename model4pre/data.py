@@ -4,24 +4,7 @@ import json
 import functools
 import torch
 import numpy as np
-from model4pre.GCN_E import GCN
 from torch.utils.data import Dataset,DataLoader
-
-def load_gcn(gcn_name):
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-    checkpoint = torch.load(gcn_name, map_location=torch.device(device))
-    x = checkpoint['model_args']
-    atom_fea_len = x['atom_fea_len']
-    h_fea_len = x['h_fea_len']
-    n_conv = x['n_conv']
-    n_h = x['n_h']
-    orig_atom_fea_len = x['orig_atom_fea_len']
-    nbr_fea_len = x['nbr_fea_len']
-    model =GCN(orig_atom_fea_len,nbr_fea_len,atom_fea_len,n_conv,h_fea_len,n_h)
-    model.cuda() if torch.cuda.is_available() else model.to(device)
-    model.load_state_dict(checkpoint['state_dict'])
-    model.eval()
-    return model
 
 def get_data_loader(dataset,collate_fn,batch_size=64,num_workers=0,pin_memory=False):
     data_loader = DataLoader(dataset,batch_size=batch_size,shuffle=True,num_workers=num_workers,collate_fn=collate_fn,pin_memory=pin_memory)
@@ -33,14 +16,11 @@ def collate_pool(dataset_list):
     batch_nbr_fea_idx1 = []
     batch_nbr_fea_idx2 = []
     batch_num_nbr = []
-    batch_cell_atoms =[]
-    batch_cell_crys = []
     crystal_atom_idx = []
     batch_pos = []
-    batch_cif_ids = []
     batch_dij_ = []
     base_idx = 0
-    for i, ((atom_fea, nbr_fea, nbr_fea_idx1, nbr_fea_idx2, num_nbr, dij_), (pos,cell_atoms,cell_crys),cif_id)\
+    for i, ((atom_fea, nbr_fea, nbr_fea_idx1, nbr_fea_idx2, num_nbr, dij_), (pos))\
         in enumerate(dataset_list):       
         n_i = atom_fea.shape[0]
         batch_atom_fea.append(atom_fea)
@@ -51,15 +31,12 @@ def collate_pool(dataset_list):
         batch_nbr_fea_idx2.append(torch.LongTensor(tt2.tolist()))
         batch_num_nbr.append(num_nbr)
         crystal_atom_idx.append(torch.LongTensor([i]*n_i))
-        batch_cell_atoms.append(cell_atoms); batch_cell_crys.append(cell_crys)
         batch_pos.append(pos)
-        batch_cif_ids.append(cif_id)
         base_idx += n_i
     return (torch.cat(batch_atom_fea, dim=0),torch.cat(batch_nbr_fea, dim=0),
             torch.cat(batch_nbr_fea_idx1, dim=0),torch.cat(batch_nbr_fea_idx2, dim=0),
             torch.cat(batch_num_nbr, dim=0),torch.cat(crystal_atom_idx,dim=0), torch.cat(batch_dij_,dim=0),
-            torch.cat(batch_pos,dim=0), torch.cat(batch_cell_atoms,dim=0), torch.cat(batch_cell_crys)),\
-            batch_cif_ids
+            torch.cat(batch_pos,dim=0))
 
 class GaussianDistance(object):
     def __init__(self, dmin, dmax, step, var=None):
@@ -101,10 +78,9 @@ class AtomCustomJSONInitializer(AtomInitializer):
 						self._embedding[key] = zz.reshape(1,-1)
     
 class CIFData(Dataset):
-    def __init__(self,json,cell,pos,radius=6,dmin=0,step=0.2):
-        self.json = json
+    def __init__(self,crystal_data,pos,radius=6,dmin=0,step=0.2):
+        self.crystal_data = crystal_data
         self.pos = pos
-        self.cell = cell
         self.radius = radius
         atom_init_file = os.path.join('./model4pre/' + 'atom_init.json')
         self.ari = AtomCustomJSONInitializer(atom_init_file)
@@ -113,13 +89,12 @@ class CIFData(Dataset):
         return 1
     @functools.lru_cache(maxsize=None) 
     def __getitem__(self,_):
-        cif_id = "predicted"
-        crystal_data = self.json
+        cif_id = self.mof.split('.cif')[0]
+        with open(os.path.join(cif_id+'.json')) as f:
+            crystal_data = json.load(f)
         nums = crystal_data['numbers']
         atom_fea = np.vstack([self.ari.get_atom_fea(nn) for nn in nums])
-        pos = self.pos
-        cell = np.array(self.cell).reshape(1,9)
-        cell_repeat = np.repeat(cell[0,0:9].reshape(1,9),len(nums),axis=0)
+        pos = np.load(self.pos+cif_id+'_pos.npy')
         index1 = np.array(crystal_data['index1'])
         nbr_fea_idx = np.array(crystal_data['index2'])
         dij = np.array(crystal_data['dij']); dij_ = torch.Tensor(dij)
@@ -131,7 +106,35 @@ class CIFData(Dataset):
         nbr_fea_idx2 = torch.LongTensor(nbr_fea_idx)
         num_nbr = torch.Tensor(num_nbr)
         pos = torch.Tensor(pos)
-        cell_crys = torch.Tensor(cell)
-        cell_atoms = torch.Tensor(cell_repeat)
 
-        return (atom_fea, nbr_fea, nbr_fea_idx1, nbr_fea_idx2, num_nbr,dij_), (pos,cell_atoms,cell_crys),cif_id
+        return (atom_fea, nbr_fea, nbr_fea_idx1, nbr_fea_idx2, num_nbr,dij_), (pos),cif_id
+    
+
+class CIFData(Dataset):
+    def __init__(self,crystal_data,pos,radius,dmin,step):
+        self.pos = pos
+        self.radius = radius
+        self.crystal_data = crystal_data
+        atom_init_file = os.path.join('./model4pre/' + 'atom_init.json')
+        self.ari = AtomCustomJSONInitializer(atom_init_file)
+        self.gdf = GaussianDistance(dmin=dmin, dmax=self.radius, step=step)
+    def __len__(self):
+        return 1
+    @functools.lru_cache(maxsize=None) 
+    def __getitem__(self,_):
+        nums = self.crystal_data['numbers']
+        atom_fea = np.vstack([self.ari.get_atom_fea(nn) for nn in nums])
+        pos = self.pos
+        index1 = np.array(self.crystal_data['index1'])
+        nbr_fea_idx = np.array(self.crystal_data['index2'])
+        dij = np.array(self.crystal_data['dij']); dij_ = torch.Tensor(dij)
+        nbr_fea = self.gdf.expand(dij)
+        num_nbr = np.array(self.crystal_data['nn_num'])
+        atom_fea = torch.Tensor(atom_fea)
+        nbr_fea = torch.Tensor(nbr_fea)
+        nbr_fea_idx1 = torch.LongTensor(index1)
+        nbr_fea_idx2 = torch.LongTensor(nbr_fea_idx)
+        num_nbr = torch.Tensor(num_nbr)
+        pos = torch.Tensor(pos)
+       
+        return (atom_fea, nbr_fea, nbr_fea_idx1, nbr_fea_idx2, num_nbr,dij_), (pos)
