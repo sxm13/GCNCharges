@@ -6,32 +6,22 @@ import torch
 import pickle
 import sys
 import argparse
-import importlib
 from tqdm import tqdm
 from model4pre.GCN_E import GCN
 from model4pre.GCN_charge import SemiFullGN
 from model4pre.data import collate_pool, get_data_loader, CIFData
 from model4pre.cif2data import ase_format, CIF2json, pre4pre, write4cif   #,n_atom
-import warnings
-warnings.filterwarnings('ignore')
-source = importlib.import_module('model4pre')
-sys.modules['source'] = source
 
 def main():
     parser = argparse.ArgumentParser(description="Run PACMaN with the specified configurations")
     parser.add_argument('folder_name', type=str, help='Relative path to a folder with cif files without partial atomic charges')
-    parser.add_argument('--model_name', type=str, default='MOF', choices=['MOF', 'COF'], help='Material Type')
     parser.add_argument('--charge_type', type=str, default='DDEC6', choices=['DDEC6', 'Bader', 'CM5'], help='Type of charges to use')
     parser.add_argument('--digits', type=int, default=6, help='Number of decimal places to print for partial atomic charges')
     parser.add_argument('--atom_type', action='store_true', default=False, help='Keep the same partial atomic charge for the same atom types')
     parser.add_argument('--neutral', action='store_true', default=False, help='Keep the net charge is zero')
     args = parser.parse_args()
 
-    if args.model_name == "COF" and args.charge_type != "DDEC6":
-        print("Error: For COF, please use DDEC6 charges.")
-        sys.exit(1)
     path = args.folder_name
-    model_type = args.model_name
     charge_type =  args.charge_type
     digits = args.digits
     atom_type = args.atom_type
@@ -46,21 +36,18 @@ def main():
     print(f"Using device: {device}")
     # model_pbe_name = "./pth/best_pbe/pbe-atom.pth"
     # model_bandgap_name = "./pth/best_bandgap/bandgap.pth"
-    if model_type == "COF":
-        model_charge_name = "./pth/best_ddec_cof/ddec.pth"
-        charge_nor_name = "./pth/best_ddec_cof/normalizer-ddec.pkl"
-    else:
-        if charge_type=="DDEC6":
-            model_charge_name = "./pth/best_ddec/ddec.pth"
-            # pbe_nor_name = "./pth/best_pbe/normalizer-pbe.pkl"
-            # bandgap_nor_name = "./pth/best_bandgap/normalizer-bandgap.pkl"
-            charge_nor_name = "./pth/best_ddec/normalizer-ddec.pkl"
-        elif charge_type=="Bader":
-            model_charge_name = "./pth/best_bader/bader.pth"
-            charge_nor_name = "./pth/best_bader/normalizer-bader.pkl"
-        elif charge_type=="CM5":
-            model_charge_name = "./pth/best_cm5/cm5.pth"
-            charge_nor_name = "./pth/best_cm5/normalizer-cm5.pkl"
+    
+    if charge_type=="DDEC6":
+        model_charge_name = "./pth/best_ddec/ddec.pth"
+        # pbe_nor_name = "./pth/best_pbe/normalizer-pbe.pkl"
+        # bandgap_nor_name = "./pth/best_bandgap/normalizer-bandgap.pkl"
+        charge_nor_name = "./pth/best_ddec/normalizer-ddec.pkl"
+    elif charge_type=="Bader":
+        model_charge_name = "./pth/best_bader/bader.pth"
+        charge_nor_name = "./pth/best_bader/normalizer-bader.pkl"
+    elif charge_type=="CM5":
+        model_charge_name = "./pth/best_cm5/cm5.pth"
+        charge_nor_name = "./pth/best_cm5/normalizer-cm5.pkl"
     # with open(pbe_nor_name, 'rb') as f:
     #     pbe_nor = pickle.load(f)
     # f.close()
@@ -73,7 +60,6 @@ def main():
 
 
     print("Folder Name: " + str(path))
-    print("Model Name: " + str(model_type))
     print("Charge Type: "+ str(charge_type))
     print("Digits: " + str(digits))
     print("Atom Type:" + str(atom_type))
