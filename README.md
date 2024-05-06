@@ -41,12 +41,12 @@ pmcharge.predict(cif_file="./test/Cu-BTC.cif",charge_type="DDEC6",digits=10,atom
 
 ```
 
-cif_file: cif file  
+cif_file: relative path to a **CIF** file with cif files without partial atomic charges    
                                                                               
                                   
 **bash**
 ```sh
-python pmcharge.py folder-name[path] --model_name[MOF/COF] --charge_type[DDEC6/Bader/CM5] --digits[int] [--atom_type] [--neutral]
+python pmcharge.py folder-name[path] --charge_type[DDEC6/Bader/CM5] --digits[int] [--atom_type] [--neutral]
 ```
 example: ```python pmcharge.py test_file/test-1/ --charge_type DDEC6 --digits 10 --atom_type --neutral```                                                    
 usage:  ```python pmcharge.py -h```                                     
