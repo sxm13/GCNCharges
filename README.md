@@ -103,19 +103,19 @@ If you use PACMAN charge, please consider citing [this paper]():
 │
 ├── model                                               # Python files used for dataset prepartion & GCN training
 │   ├── GCN_E.py                                        # Networks model for energy/bandgap training
-│   ├── GCN_charge.py                                     # Networks model for atomic charge training
+│   ├── GCN_charge.py                                   # Networks model for atomic charge training
 │   ├── cif2data.py                                     # Convert QMOF database to dataset
 │   ├── data_E.py                                       # Convert cif to graph & target (energy/bandgap)
-│   ├── data_charge.py                                    # Convert cif to graph & target (atomic charge)
+│   ├── data_charge.py                                  # Convert cif to graph & target (atomic charge)
 │   └── utils.py                                        # Normalizer, sampling, AverageMeter, save_checkpoint
 │
 ├── model4pre                                           # Python files used for prediction
 │   ├── GCN_E.py                                        # Networks model for energy/bandgap prediction
-│   ├── GCN_charge.py                                     # Networks model for atomic charge prediction
-│   ├── atom_init.json                                  # 
+│   ├── GCN_charge.py                                   # Networks model for atomic charge prediction
+│   ├── atom_init.json                                  # a JSON file that stores the initialization vector for each element
 │   ├── cif2data.py                                     # Read/write cif file
 │   ├── data.py                                         # Convert cif to graph & target (energy/bandgap)
-│   ├── data_charge.py                                    # Convert cif to graph & target (atomic charge)
+│   ├── data_charge.py                                  # Convert cif to graph & target (atomic charge)
 │   └── utils.py                                        # Normalizer, sampling, AverageMeter, save_checkpoint
 │
 ├── pth                                                 # Models of this project
@@ -145,12 +145,12 @@ If you use PACMAN charge, please consider citing [this paper]():
 │   └── chk_pbe                                         # ///
 │       └── checkpoint.pth                              # ///
 │
-├── pmcharge.py                                           # main python file for atomic charge assignment by command line
+├── pmcharge.py                                         # main python file for atomic charge assignment by command line
 ├── LICENSE.txt                                         # MIT license
 ├── README.md                                           # Usage/Source
 ├── requirements.txt                                    # packages need to be installed
 ├── train_E.py                                          # main python file for energy/bandgap training
-└── train_charge.py                                       # main python file for atomic charge training
+└── train_charge.py                                     # main python file for atomic charge training
 
 ```
  
