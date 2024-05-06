@@ -37,7 +37,7 @@ pip install -r requirements.txt
                 
 ```sh      
 from PACMANCharge import pmcharge
-pmcharge.predict(cif_file="./test/Cu-BTC.cif",model_name="MOF",charge_type="DDEC6",digits=10,atom_type=True,neutral=True)
+pmcharge.predict(cif_file="./test/Cu-BTC.cif",charge_type="DDEC6",digits=10,atom_type=True,neutral=True)
 
 ```
 
@@ -48,11 +48,10 @@ cif_file: cif file
 ```sh
 python pmcharge.py folder-name[path] --model_name[MOF/COF] --charge_type[DDEC6/Bader/CM5] --digits[int] [--atom_type] [--neutral]
 ```
-example: ```python pmcharge.py test_file/test-1/ --model_name MOF --charge_type DDEC6 --digits 10 --atom_type --neutral```                                                    
+example: ```python pmcharge.py test_file/test-1/ --charge_type DDEC6 --digits 10 --atom_type --neutral```                                                    
 usage:  ```python pmcharge.py -h```                                     
 
 * folder-name: relative path to a folder with cif files without partial atomic charges                            
-* model-name (default: MOF): MOF or COF
 * charge-type (default: DDE6): DDEC6, Bader or CM5
 * digits (default: 6): number of decimal places to print for partial atomic charges. ML models were trained on a 6-digit dataset.                                                     
 * atom-type (default: False): keep the same partial atomic charge for the same atom types (based on the similarity of partial atomic charges up to 3 & 2 decimal places).                                     
@@ -104,19 +103,19 @@ If you use PACMAN charge, please consider citing [this paper]():
 │
 ├── model                                               # Python files used for dataset prepartion & GCN training
 │   ├── GCN_E.py                                        # Networks model for energy/bandgap training
-│   ├── GCN_ddec.py                                     # Networks model for atomic charge training
+│   ├── GCN_charge.py                                     # Networks model for atomic charge training
 │   ├── cif2data.py                                     # Convert QMOF database to dataset
 │   ├── data_E.py                                       # Convert cif to graph & target (energy/bandgap)
-│   ├── data_ddec.py                                    # Convert cif to graph & target (atomic charge)
+│   ├── data_charge.py                                    # Convert cif to graph & target (atomic charge)
 │   └── utils.py                                        # Normalizer, sampling, AverageMeter, save_checkpoint
 │
 ├── model4pre                                           # Python files used for prediction
 │   ├── GCN_E.py                                        # Networks model for energy/bandgap prediction
-│   ├── GCN_ddec.py                                     # Networks model for atomic charge prediction
+│   ├── GCN_charge.py                                     # Networks model for atomic charge prediction
 │   ├── atom_init.json                                  # 
 │   ├── cif2data.py                                     # Read/write cif file
 │   ├── data.py                                         # Convert cif to graph & target (energy/bandgap)
-│   ├── data_ddec.py                                    # Convert cif to graph & target (atomic charge)
+│   ├── data_charge.py                                    # Convert cif to graph & target (atomic charge)
 │   └── utils.py                                        # Normalizer, sampling, AverageMeter, save_checkpoint
 │
 ├── pth                                                 # Models of this project
@@ -130,9 +129,6 @@ If you use PACMAN charge, please consider citing [this paper]():
 │   │   ├── bandgap.pth                                 # ///
 │   │   └── normalizer-bandgap.pkl                      # ///
 │   ├── best_ddec                                       # ///
-│   │   ├── ddec.pth                                    # ///
-│   │   └── normalizer-ddec.pkl                         # ///
-│   ├── best_ddec_COF                                   # ///
 │   │   ├── ddec.pth                                    # ///
 │   │   └── normalizer-ddec.pkl                         # ///
 │   ├── best_pbe                                        # ///
@@ -149,14 +145,12 @@ If you use PACMAN charge, please consider citing [this paper]():
 │   └── chk_pbe                                         # ///
 │       └── checkpoint.pth                              # ///
 │
-├── PACMaN.py                                           # main python file for atomic charge assignment by command line
+├── pmcharge.py                                           # main python file for atomic charge assignment by command line
 ├── LICENSE.txt                                         # MIT license
 ├── README.md                                           # Usage/Source
-├── predict_E.py                                        # main python file for energy/bandgap prediction
-├── predict_ddec.py                                     # main python file for atomic charge prediction
 ├── requirements.txt                                    # packages need to be installed
 ├── train_E.py                                          # main python file for energy/bandgap training
-└── train_ddec.py                                       # main python file for atomic charge training
+└── train_charge.py                                       # main python file for atomic charge training
 
 ```
  

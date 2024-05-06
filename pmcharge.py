@@ -1,10 +1,8 @@
-import sys
 import os
 import glob
 import json
 import torch
 import pickle
-import sys
 import argparse
 from tqdm import tqdm
 from model4pre.GCN_E import GCN
