@@ -99,7 +99,7 @@ If you use PACMAN charge, please consider citing [this paper]():
 ├── ..
 ├── figs                                                # Figures used for introduction 
 │   ├── toc.jpg                                         # Table of Contents
-│   ├── workflow.png                                    # Workflow of this project
+│   └── workflow.png                                    # Workflow of this project
 │
 ├── model                                               # Python files used for dataset prepartion & GCN training
 │   ├── GCN_E.py                                        # Networks model for energy/bandgap training
@@ -119,13 +119,13 @@ If you use PACMAN charge, please consider citing [this paper]():
 │   └── utils.py                                        # Normalizer, sampling, AverageMeter, save_checkpoint
 │
 ├── pth                                                 # Models of this project
-    ├── best_bader                                      # Bader
+│   ├── best_bader                                      # Bader
 │   │   ├── bader  .pth                                 # Bader charge model
 │   │   └── normalizer-bader.pkl                        # Normalizer of bandgap
 │   ├── best_bandgap                                    # Bandgap
 │   │   ├── bandgap.pth                                 # Bandgap model
 │   │   └── normalizer-bandgap.pkl                      # Normalizer of bandgap
-    ├── best_cm5                                        # CM5
+│   ├── best_cm5                                        # CM5
 │   │   ├── bandgap.pth                                 # ///
 │   │   └── normalizer-bandgap.pkl                      # ///
 │   ├── best_ddec                                       # ///
@@ -134,11 +134,11 @@ If you use PACMAN charge, please consider citing [this paper]():
 │   ├── best_pbe                                        # ///
 │   │   ├── pbe-atom.pth                                # ///
 │   │   └── normalizer-pbe.pkl                          # ///
-    ├── chk_bader                                       # Bader
+│   ├── chk_bader                                       # Bader
 │   │   └── checkpoint.pth                              # Checkpoint of bader
 │   ├── chk_bandgap                                     # Bandgap
 │   │   └── checkpoint.pth                              # Checkpoint of bandgap
-    ├── chk_cm5                                         # CM5
+│   ├── chk_cm5                                         # CM5
 │   │   └── checkpoint.pth                              # ///
 │   ├── chk_ddec                                        # ///
 │   │   └── checkpoint.pth                              # ///
