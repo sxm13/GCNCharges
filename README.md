@@ -68,7 +68,7 @@ If you use PACMAN charge, please consider citing [this paper]():
 @article{,
     title={PACMAN: A Robust Partial Atomic Charge Predicter for Nanoporous Materials using Crystal Graph Convolution Network},
     DOI={},
-    journal={Journal of Chemical Theory and Computation},
+    journal={},
     author={Zhao, Guobin and Chung, Yongchul},
     year={2024},
     pages={}
