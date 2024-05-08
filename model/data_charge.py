@@ -22,12 +22,12 @@ def collate_pool(dataset_list):
     batch_nbr_fea_idx2 = []
     batch_num_nbr = []
     crystal_atom_idx = []
-    batch_target_ddec = []
+    batch_target_charge = []
     batch_pos = []
     batch_cif_ids = []
     batch_dij_ = []
     base_idx = 0
-    for i, ((atom_fea, nbr_fea, nbr_fea_idx1, nbr_fea_idx2, num_nbr, dij_), (pos), target_ddec,cif_id)\
+    for i, ((atom_fea, nbr_fea, nbr_fea_idx1, nbr_fea_idx2, num_nbr, dij_), (pos), target_charge,cif_id)\
         in enumerate(dataset_list):       
         n_i = atom_fea.shape[0]
         batch_atom_fea.append(atom_fea)
@@ -38,7 +38,7 @@ def collate_pool(dataset_list):
         batch_nbr_fea_idx2.append(torch.LongTensor(tt2.tolist()))
         batch_num_nbr.append(num_nbr)
         crystal_atom_idx.append(torch.LongTensor([i]*n_i))
-        batch_target_ddec.append(target_ddec)
+        batch_target_charge.append(target_charge)
         batch_pos.append(pos)
         batch_cif_ids.append(cif_id)
         base_idx += n_i
@@ -46,7 +46,7 @@ def collate_pool(dataset_list):
             torch.cat(batch_nbr_fea_idx1, dim=0),torch.cat(batch_nbr_fea_idx2, dim=0),
             torch.cat(batch_num_nbr, dim=0),torch.cat(crystal_atom_idx,dim=0), torch.cat(batch_dij_,dim=0),
             torch.cat(batch_pos,dim=0)),\
-            torch.cat(batch_target_ddec, dim=0),batch_cif_ids
+            torch.cat(batch_target_charge, dim=0),batch_cif_ids
 
 class GaussianDistance(object):
     def __init__(self, dmin, dmax, step, var=None):
@@ -88,10 +88,10 @@ class AtomCustomJSONInitializer(AtomInitializer):
 						self._embedding[key] = zz.reshape(1,-1)
 
 class CIFData(Dataset):
-    def __init__(self,root_dir,root_dir_pos,root_dir_ddec,csv_file,radius=6,dmin=0,step=0.2,random_seed=110):
+    def __init__(self,root_dir,root_dir_pos,root_dir_charge,csv_file,radius=6,dmin=0,step=0.2,random_seed=110):
         self.root_dir = root_dir
         self.root_dir_pos = root_dir_pos
-        self.root_dir_ddec = root_dir_ddec
+        self.root_dir_charge = root_dir_charge
         self.radius = radius
         id_prop_file = os.path.join(csv_file)
         with open(id_prop_file) as f:
@@ -123,5 +123,5 @@ class CIFData(Dataset):
         nbr_fea_idx2 = torch.LongTensor(nbr_fea_idx)
         num_nbr = torch.Tensor(num_nbr)
         pos = torch.Tensor(pos)
-        target_ddec = torch.Tensor(np.load(self.root_dir_ddec+'/'+cif_id+'.npy'))
-        return (atom_fea, nbr_fea, nbr_fea_idx1, nbr_fea_idx2, num_nbr,dij_), (pos), target_ddec,cif_id
+        target_charge = torch.Tensor(np.load(self.root_dir_charge+'/'+cif_id+'.npy'))
+        return (atom_fea, nbr_fea, nbr_fea_idx1, nbr_fea_idx2, num_nbr,dij_), (pos), target_charge,cif_id
