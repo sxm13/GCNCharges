@@ -52,7 +52,7 @@ example: ```python pmcharge.py test_file/test-1/ --charge_type DDEC6 --digits 10
 usage:  ```python pmcharge.py -h```                                     
 
 * folder-name: relative path to a folder with cif files without partial atomic charges                            
-* charge-type (default: DDE6): DDEC6, Bader or CM5
+* charge-type (default: DDE6): DDEC6, Bader, CM5 or REPEAT
 * digits (default: 6): number of decimal places to print for partial atomic charges. ML models were trained on a 6-digit dataset.                                                     
 * atom-type (default: False): keep the same partial atomic charge for the same atom types (based on the similarity of partial atomic charges up to 3 & 2 decimal places).                                     
 * neutral (default: False): keep the net charge is zero. We use "mean" method to neuralize the system where the excess charges are equally distributed across all atoms.                   
@@ -89,7 +89,8 @@ If you use PACMAN charge, please consider citing [this paper]():
 | CoRE MOF 2014 DDEC | [link](https://zenodo.org/records/3986573#.XzfKiJMzY8N) | 2,932 |
 | CoRE MOF 2014 DFT-optimized | [link](https://zenodo.org/records/3986569#.XzfKcpMzY8N) | 502 | 
 | CURATED-COFs | [link](https://github.com/danieleongari/CURATED-COFs) | 612 |
-| ARC-MOF | [link](https://zenodo.org/records/10818822) | 279,118 |                   
+| ARC-MOF | [link](https://zenodo.org/records/10818822) | 279,118 |                           
+        
 
 #### Workflow            
 <img src="./figs/workflow.png" alt="workflow" width="500">             
