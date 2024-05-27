@@ -136,9 +136,9 @@ If you use PACMAN charge, please consider citing [this paper]():
 │   ├── best_pbe                                        # ///
 │   │   ├── pbe-atom.pth                                # ///
 │   │   └── normalizer-pbe.pkl                          # ///
-│   ├── best_repeat                                        # ///
-│   │   ├── repeat.pth                                # ///
-│   │   └── normalizer-repeat.pkl                          # ///
+│   ├── best_repeat                                     # ///
+│   │   ├── repeat.pth                                  # ///
+│   │   └── normalizer-repeat.pkl                       # ///
 │   ├── chk_bader                                       # Bader
 │   │   └── checkpoint.pth                              # Checkpoint of bader
 │   ├── chk_bandgap                                     # Bandgap
@@ -149,7 +149,7 @@ If you use PACMAN charge, please consider citing [this paper]():
 │   │   └── checkpoint.pth                              # ///
 │   ├── chk_pbe                                         # ///
 │   │   └── checkpoint.pth                              # ///
-│   └── chk_repeat                                         # ///
+│   └── chk_repeat                                      # ///
 │       └── checkpoint.pth                              # ///
 │
 ├── pmcharge.py                                         # main python file for atomic charge assignment by command line
