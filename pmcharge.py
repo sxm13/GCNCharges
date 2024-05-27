@@ -8,7 +8,7 @@ from tqdm import tqdm
 from model4pre.GCN_E import GCN
 from model4pre.GCN_charge import SemiFullGN
 from model4pre.data import collate_pool, get_data_loader, CIFData
-from model4pre.cif2data import ase_format, CIF2json, pre4pre, write4cif   #,n_atom
+from model4pre.cif2data import ensure_data, ase_format, CIF2json, pre4pre, write4cif   #,n_atom
 
 def main():
     parser = argparse.ArgumentParser(description="Run PACMaN with the specified configurations")
